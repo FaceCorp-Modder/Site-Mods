@@ -663,6 +663,7 @@ footer{
   position:fixed;
   right:24px;
   bottom:24px;
+  z-index:9999;
 
   display:flex;
   align-items:center;
@@ -671,7 +672,7 @@ footer{
   padding:10px 14px;
 
   border:1px solid rgba(255,255,255,.12);
-  background:rgba(10,10,10,.85);
+  background:rgba(10,10,10,.9);
   color:var(--cyan);
 
   font-family:var(--mono);
@@ -679,6 +680,7 @@ footer{
   letter-spacing:.08em;
 
   cursor:pointer;
+  pointer-events:auto;
 
   backdrop-filter:blur(8px);
 
@@ -695,21 +697,10 @@ footer{
   transform:translateY(-2px);
 }
 
-.audio-toggle i{
-  font-size:13px;
-}
-
 .audio-toggle.muted{
   color:rgba(255,255,255,.45);
 }
 
 .audio-toggle.muted:hover{
   color:var(--cyan);
-}
-
-@media(max-width:600px){
-  .audio-toggle{
-    right:15px;
-    bottom:15px;
-  }
 }
