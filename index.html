@@ -11,6 +11,52 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+<audio id="backgroundMusic" loop>
+  <source src="audio/ambiance.mp3" type="audio/mpeg">
+</audio>
+
+<button id="audioToggle" class="audio-toggle" aria-label="Activer ou couper la musique">
+  <i class="fa-solid fa-volume-high"></i>
+  <span>AUDIO ON</span>
+</button>
+
+<script>
+  const audio = document.getElementById('backgroundMusic');
+  const toggle = document.getElementById('audioToggle');
+
+  audio.volume = 0.15;
+
+  function updateAudioButton() {
+    const icon = toggle.querySelector('i');
+    const text = toggle.querySelector('span');
+
+    if (audio.paused) {
+      icon.className = 'fa-solid fa-volume-xmark';
+      text.textContent = 'AUDIO OFF';
+      toggle.classList.add('muted');
+    } else {
+      icon.className = 'fa-solid fa-volume-high';
+      text.textContent = 'AUDIO ON';
+      toggle.classList.remove('muted');
+    }
+  }
+
+  toggle.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+
+    updateAudioButton();
+  });
+
+  audio.play()
+    .then(() => updateAudioButton())
+    .catch(() => {
+      updateAudioButton();
+    });
+</script>
 <body>
 
 <canvas id="bg-canvas"></canvas>
