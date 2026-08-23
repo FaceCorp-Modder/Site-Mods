@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATELIER // MODS</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<div class="side-strip">
+  <img class="logo" src="images/logo.png" alt="FaceCorp">
+</div>
+
+<div class="page">
+
+<header>
+  <div class="header-top">
+    <div class="brand">
+      <div>
+        <div class="eyebrow">Atelier personnel — Mods de jeux</div>
+        <h1>ATELIER <span>// MODS</span></h1>
+      </div>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Ouvrir les filtres" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <p>Modifications, traductions et bricolages sur mesure pour différents jeux. Chaque fiche présente l'avancement, les visuels et — quand c'est disponible — le téléchargement.</p>
+
+  <div class="filter-panel" id="filterPanel">
+    <div class="filter-group">
+      <div class="filter-label">Style de jeu</div>
+      <div class="filter-pills" id="genreFilters"></div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label">Type de mod</div>
+      <div class="filter-pills" id="typeFilters"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="status-tabs" id="statusTabs">
+    <button class="status-tab active" data-status="all">Tous</button>
+    <button class="status-tab" data-status="termine">Terminé</button>
+    <button class="status-tab" data-status="en-cours">En cours</button>
+    <button class="status-tab" data-status="avenir">À venir</button>
+  </div>
+  <div class="section-label">Projets</div>
+  <div class="grid" id="grid"></div>
+  <div class="empty-state" id="emptyState">Aucun mod ne correspond à ces filtres.</div>
+</main>
+
+<footer>ATELIER // MODS — site personnel</footer>
+
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script>
+/* ============================================================
+   FOND ANIMÉ — effet réseau / circuit
+   Nœuds qui dérivent lentement et se relient quand ils sont
+   assez proches, avec un pulse occasionnel. Se met en pause
+   si l'onglet n'est pas visible ou si l'utilisateur préfère
+   moins de mouvement (voir le CSS prefers-reduced-motion).
+   ============================================================ */
+(function(){
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const ctx = canvas.getContext('2d');
+
+  let width, height, nodes;
+  const LINK_DIST = 140;
+  const CYAN = '94, 234, 212';
+  const AMBER = '240, 168, 104';
+
+  function resize(){
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    const count = Math.min(90, Math.floor((width * height) / 18000));
+    nodes = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      r: Math.random() * 1.6 + 0.6,
+      pulse: Math.random() * Math.PI * 2,
+      amber: Math.random() < 0.12
+    }));
+  }
+
+  function step(){
+    ctx.clearRect(0, 0, width, height);
+
+    for (const n of nodes){
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > width) n.vx *= -1;
+      if (n.y < 0 || n.y > height) n.vy *= -1;
+      n.pulse += 0.02;
+    }
+
+    for (let i = 0; i < nodes.length; i++){
+      for (let j = i + 1; j < nodes.length; j++){
+        const a = nodes[i], b = nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < LINK_DIST){
+          ctx.strokeStyle = `rgba(${CYAN}, ${0.14 * (1 - dist / LINK_DIST)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (const n of nodes){
+      const glow = (Math.sin(n.pulse) + 1) / 2;
+      const color = n.amber ? AMBER : CYAN;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r + glow * 0.8, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${color}, ${0.35 + glow * 0.35})`;
+      ctx.fill();
+    }
+
+    if (!document.hidden) requestAnimationFrame(step);
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) requestAnimationFrame(step);
+  });
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(step);
+})();
+
+/* ============================================================
+   DONNÉES DES MODS
+   Pour ajouter un mod, copie un bloc et modifie les champs.
+   - status        : 'termine' | 'en-cours' | 'avenir'
+   - genre         : le style du jeu (ex: 'Horreur', 'Simulation')
+   - modType       : le type de mod (ex: 'Traduction', 'Skin', 'Gameplay')
+   - poster        : chemin vers l'image d'affiche (ou null pour un placeholder)
+   - gallery       : liste de chemins d'images (ou [] si aucune pour l'instant)
+   - video         : chemin vers une vidéo .mp4 (ou null)
+   - installSteps  : liste d'étapes texte (ou null pour ne pas afficher l'onglet)
+   - downloadUrl   : lien de téléchargement (ou null pour ne rien afficher)
+   ============================================================ */
+const STATUS_LABELS = {
+  'termine': 'Terminé',
+  'en-cours': 'En cours',
+  'avenir': 'À venir'
+};
+
+const mods = [
+  {
+    id: 'csppi',
+    tag: 'Traduction FR',
+    title: 'CSPPI — Traduction Française',
+    status: 'termine',
+    genre: 'Horreur',
+    modType: 'Traduction',
+    description: "Traduction complète du jeu CSPPI de l'anglais vers le français, réalisée pour le stream de GussDX.",
+    poster: 'images/CSPPI/library_600x900.jpg',
+    gallery: [],
+    video: null,
+    installSteps: null,
+    downloadUrl: null,
+    downloadNote: "Pas de téléchargement public — projet réalisé avec l'accord du créateur, réservé à l'affichage."
+  },
+  {
+    id: 'police-simulator',
+    tag: 'En cours',
+    title: 'Police Simulator: Patrol Officers',
+    status: 'en-cours',
+    genre: 'Simulation',
+    modType: 'Gameplay',
+    description: "Remplace cette description par le détail de ton mod : ce qu'il change, où il en est.",
+    poster: 'images/police-simulator/library_600x900.jpg',
+    gallery: [],
+    video: null,
+    installSteps: [
+      "Télécharge le fichier .pak depuis le lien ci-dessous.",
+      "Place-le dans le dossier Paks du jeu.",
+      "Lance le jeu normalement."
+    ],
+    downloadUrl: null,
+    downloadNote: "Ajoute downloadUrl dans les données pour activer ce bouton."
+  }
+];
+
+/* ---------------- État des filtres ---------------- */
+const state = {
+  status: 'all',
+  genres: new Set(),
+  types: new Set()
+};
+
+/* ---------------- Rendu de la grille ---------------- */
+const grid = document.getElementById('grid');
+const emptyState = document.getElementById('emptyState');
+
+function matchesFilters(mod){
+  if (state.status !== 'all' && mod.status !== state.status) return false;
+  if (state.genres.size && !state.genres.has(mod.genre)) return false;
+  if (state.types.size && !state.types.has(mod.modType)) return false;
+  return true;
+}
+
+function renderGrid(){
+  const filtered = mods.filter(matchesFilters);
+  grid.innerHTML = '';
+  emptyState.style.display = filtered.length ? 'none' : 'block';
+
+  filtered.forEach(mod => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <span class="bracket-bl"></span><span class="bracket-br"></span>
+      <div class="poster">
+        <span class="poster-tag">${mod.tag}</span>
+        ${mod.poster
+          ? `<img src="${mod.poster}" alt="${mod.title}">`
+          : `<span class="poster-initial">${mod.title.charAt(0)}</span>`}
+      </div>
+      <div class="card-body">
+        <div class="card-title">${mod.title}</div>
+        <div class="card-desc">${mod.description}</div>
+        <div class="card-status">${STATUS_LABELS[mod.status] || mod.status}</div>
+      </div>
+    `;
+    card.addEventListener('click', () => openModal(mod));
+    grid.appendChild(card);
+  });
+}
+
+/* ---------------- Onglets de statut ---------------- */
+document.querySelectorAll('.status-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.status-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.status = btn.dataset.status;
+    renderGrid();
+  });
+});
+
+/* ---------------- Filtres genre / type (menu hamburger) ---------------- */
+function buildPills(container, values, set){
+  container.innerHTML = '';
+  [...new Set(values)].forEach(value => {
+    const pill = document.createElement('button');
+    pill.className = 'pill';
+    pill.type = 'button';
+    pill.textContent = value;
+    pill.addEventListener('click', () => {
+      if (set.has(value)){ set.delete(value); pill.classList.remove('active'); }
+      else { set.add(value); pill.classList.add('active'); }
+      renderGrid();
+    });
+    container.appendChild(pill);
+  });
+}
+
+buildPills(document.getElementById('genreFilters'), mods.map(m => m.genre), state.genres);
+buildPills(document.getElementById('typeFilters'), mods.map(m => m.modType), state.types);
+
+/* ---------------- Menu hamburger ---------------- */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const filterPanel = document.getElementById('filterPanel');
+
+hamburgerBtn.addEventListener('click', () => {
+  const open = filterPanel.classList.toggle('open');
+  hamburgerBtn.classList.toggle('open', open);
+  hamburgerBtn.setAttribute('aria-expanded', String(open));
+});
+
+renderGrid();
+
+/* ---------------- Modal ---------------- */
+const overlay = document.getElementById('overlay');
+const modal = document.getElementById('modal');
+
+function openModal(mod){
+  const tabs = [
+    { id:'description', label:'Description' },
+    { id:'images', label:'Images' },
+    { id:'video', label:'Vidéos' },
+    { id:'download', label:'Téléchargement' }
+  ];
+
+  modal.innerHTML = `
+    <button class="modal-close" id="closeBtn">✕</button>
+    <div class="modal-header">
+      <div class="modal-tag">${mod.tag} — ${STATUS_LABELS[mod.status] || mod.status}</div>
+      <div class="modal-title">${mod.title}</div>
+    </div>
+    <div class="tabs">
+      ${tabs.map((t,i) => `<button class="tab-btn ${i===0?'active':''}" data-tab="${t.id}">${t.label}</button>`).join('')}
+    </div>
+
+    <div class="tab-panel active" data-panel="description">
+      <p class="modal-desc">${mod.description}</p>
+    </div>
+
+    <div class="tab-panel" data-panel="images">
+      ${mod.gallery.length
+        ? `<div class="gallery-grid">${mod.gallery.map(src => `<img src="${src}" alt="${mod.title}">`).join('')}</div>`
+        : `<div class="placeholder-box">Aucune image pour l'instant — ajoute des chemins dans "gallery" pour ce mod.</div>`}
+    </div>
+
+    <div class="tab-panel" data-panel="video">
+      ${mod.video
+        ? `<video controls src="${mod.video}"></video>`
+        : `<div class="placeholder-box">Aucune vidéo pour l'instant — ajoute un chemin dans "video" pour ce mod.</div>`}
+    </div>
+
+    <div class="tab-panel" data-panel="download">
+      ${mod.installSteps ? `
+      <div class="steps">
+        ${mod.installSteps.map(s => `<div class="step">${s}</div>`).join('')}
+      </div>` : ''}
+      <div class="download-bar">
+        ${mod.downloadUrl
+          ? `<a class="btn-download" href="${mod.downloadUrl}">Télécharger</a>`
+          : `<span class="no-download">${mod.downloadNote || 'Pas de téléchargement disponible.'}</span>`}
+      </div>
+    </div>
+  `;
+
+  modal.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      modal.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      modal.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      modal.querySelector(`.tab-panel[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+    });
+  });
+
+  modal.querySelector('#closeBtn').addEventListener('click', closeModal);
+  overlay.classList.add('active');
+}
+
+function closeModal(){ overlay.classList.remove('active'); }
+
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
