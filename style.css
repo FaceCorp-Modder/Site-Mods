@@ -542,12 +542,22 @@ video{ width:100%; border:1px solid var(--line); display:block; }
 }
 
 footer{
-  text-align:center;
-  padding:32px;
-  color:var(--text-muted);
-  font-family:var(--mono);
-  font-size:11px;
-  border-top:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+}
+
+.discord-link{
+  color:var(--cyan);
+  font-size:22px;
+  text-decoration:none;
+  transition:.2s ease;
+}
+
+.discord-link:hover{
+  color:#fff;
+  transform:scale(1.15);
 }
 
 @media (max-width:600px){
