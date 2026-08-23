@@ -187,88 +187,113 @@ const STATUS_LABELS = {
 };
 
 const mods = [
-{
-  id: 'CSPPI',
-  tag: 'Terminé',
-  title: "Conrad Stevenson's Paranormal P.I.",
-  status: 'termine',
-  genre: 'Horreur',
-  modType: 'Traduction',
-  description: `
-    <div class="mod-description">
-      <p class="description-intro">
-        Une adaptation française complète de
-        <strong>Conrad Stevenson's Paranormal P.I.</strong>,
-        pensée pour proposer une expérience entièrement en français,
-        tout en conservant l'ambiance et l'identité du jeu original.
+id: 'CSPPI',
+tag: 'Terminé',
+title: "Conrad Stevenson's Paranormal P.I.",
+status: 'termine',
+genre: 'Horreur',
+modType: 'Traduction',
+description: `
+  <div class="mod-description">
+
+    <p class="description-intro">
+      Une adaptation française complète de
+      <strong>Conrad Stevenson's Paranormal P.I.</strong>,
+      pensée pour proposer une expérience entièrement en français,
+      tout en conservant l'ambiance et l'identité du jeu original.
+    </p>
+
+    <div class="description-section">
+      <h3>Une adaptation complète</h3>
+
+      <p>
+        Le projet ne se limite pas à une simple traduction des textes.
+        De nombreux éléments du jeu ont été retravaillés afin de proposer
+        une expérience cohérente et immersive en français.
       </p>
 
-      <div class="description-section">
-        <h3>Une adaptation complète</h3>
-        <p>
-          Le projet ne se limite pas à une simple traduction des textes.
-          De nombreux éléments du jeu ont été retravaillés afin de proposer
-          une expérience cohérente et immersive en français.
-        </p>
-
-        <ul class="description-list">
-          <li>Textes et dialogues entièrement traduits en français</li>
-          <li>Voix et dialogues adaptés en français</li>
-          <li>Vidéos du jeu adaptées pour la version française</li>
-          <li>Textures et éléments graphiques traduits</li>
-          <li>Interface et différents éléments visuels adaptés</li>
-        </ul>
-      </div>
-
-      <div class="description-section">
-        <h3>Une version personnalisée pour GussDx</h3>
-        <p>
-          Cette version du mod a également été spécialement personnalisée
-          pour <strong>GussDx</strong>, afin de pouvoir être utilisée dans
-          ses sessions de jeu et ses streams consacrés à l'enquête paranormale.
-        </p>
-
-        <a
-          href="https://www.twitch.tv/gussdx"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="creator-link"
-        >
-          <span class="creator-link-icon">◆</span>
-          <span>
-            <small>STREAMER</small>
-            <strong>GussDx</strong>
-          </span>
-          <span class="creator-link-arrow">↗</span>
-        </a>
-      </div>
-
-      <div class="description-section">
-        <h3>Un projet réalisé sur mesure</h3>
-        <p>
-          Chaque modification a été réalisée spécifiquement pour cette
-          adaptation française, avec pour objectif de rendre le jeu
-          plus accessible aux joueurs francophones sans dénaturer
-          l'expérience originale.
-        </p>
-      </div>
-
-      <div class="description-status">
-        <span class="status-dot"></span>
-        <span>Projet terminé — version française complète</span>
-      </div>
+      <ul class="description-list">
+        <li>Textes et dialogues entièrement traduits en français</li>
+        <li>Voix et dialogues adaptés en français</li>
+        <li>Vidéos du jeu adaptées pour la version française</li>
+        <li>Textures et éléments graphiques traduits</li>
+        <li>Interface et différents éléments visuels adaptés</li>
+      </ul>
     </div>
-  `,
-  poster: 'images/CSPPI/library_600x900.jpg',
-  gallery: [],
-  video: null,
-  installSteps: [
-    "Télécharge le fichier .pak depuis le lien ci-dessous.",
-    "Place-le dans le dossier Paks du jeu.",
-    "Lance le jeu normalement."
-  ],
-  downloadUrl: null,
-  downloadNote: "Le mod est disponible au téléchargement."
+
+    <div class="description-section">
+      <h3>Une version personnalisée pour GussDx</h3>
+
+      <p>
+        Cette version du mod a également été spécialement personnalisée
+        pour <strong>GussDx</strong>, afin de pouvoir être utilisée dans
+        ses sessions de jeu et ses streams consacrés à l'enquête paranormale.
+      </p>
+
+      <a
+        href="https://www.twitch.tv/gussdx"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="creator-link"
+      >
+        <span class="creator-link-icon">◆</span>
+
+        <span>
+          <small>STREAMER</small>
+          <strong>GussDx</strong>
+        </span>
+
+        <span class="creator-link-arrow">↗</span>
+      </a>
+    </div>
+
+    <div class="description-section">
+      <h3>Le jeu original</h3>
+
+      <p>
+        Vous souhaitez découvrir le jeu avant d'installer le mod ?
+        Retrouvez <strong>Conrad Stevenson's Paranormal P.I.</strong>
+        sur Steam.
+      </p>
+
+      <a
+        href="https://store.steampowered.com/app/1872860/Conrad_Stevensons_Paranormal_PI/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="game-link"
+      >
+        <span class="game-link-icon">↗</span>
+
+        <span>
+          <small>DISPONIBLE SUR</small>
+          <strong>Steam</strong>
+        </span>
+
+        <span class="game-link-arrow">↗</span>
+      </a>
+    </div>
+
+    <div class="description-section">
+      <h3>Un projet réalisé sur mesure</h3>
+
+      <p>
+        Chaque modification a été réalisée spécifiquement pour cette
+        adaptation française, avec pour objectif de rendre le jeu
+        plus accessible aux joueurs francophones sans dénaturer
+        l'expérience originale.
+      </p>
+    </div>
+
+    <div class="description-status">
+      <span class="status-dot"></span>
+      <span>Projet terminé — version française complète</span>
+    </div>
+
+  </div>
+`,
+poster: 'images/CSPPI/library_600x900.jpg',
+gallery: [],
+video: null,
 },
 {
   id: 'police-simulator',
