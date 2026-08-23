@@ -658,49 +658,67 @@ footer{
   .status-tabs{ overflow-x:auto; }
 }
 
-/* ---------- Audio ---------- */
+/* ---------- Lecteur audio ---------- */
 .audio-toggle{
   position:fixed;
   right:24px;
   bottom:24px;
-  z-index:9999;
+  z-index:1000;
 
   display:flex;
   align-items:center;
   gap:9px;
 
-  padding:10px 14px;
+  padding:9px 13px;
 
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(10,10,10,.9);
+  background:rgba(10,14,19,.92);
+  border:1px solid var(--line);
+
   color:var(--cyan);
 
   font-family:var(--mono);
-  font-size:.7rem;
-  letter-spacing:.08em;
+  font-size:10px;
+  letter-spacing:.1em;
 
   cursor:pointer;
-  pointer-events:auto;
 
   backdrop-filter:blur(8px);
 
   transition:
-    color .2s ease,
-    border-color .2s ease,
-    background .2s ease,
-    transform .2s ease;
+    border-color .15s ease,
+    color .15s ease,
+    background .15s ease,
+    transform .15s ease;
 }
 
 .audio-toggle:hover{
   border-color:var(--cyan);
-  background:rgba(255,255,255,.05);
+  background:rgba(94,234,212,.06);
   transform:translateY(-2px);
 }
 
+.audio-icon{
+  width:14px;
+  text-align:center;
+  font-size:15px;
+  line-height:1;
+}
+
+.audio-text{
+  white-space:nowrap;
+}
+
 .audio-toggle.muted{
-  color:rgba(255,255,255,.45);
+  color:var(--text-muted);
 }
 
 .audio-toggle.muted:hover{
   color:var(--cyan);
+}
+
+@media (max-width:600px){
+  .audio-toggle{
+    right:15px;
+    bottom:15px;
+  }
 }
