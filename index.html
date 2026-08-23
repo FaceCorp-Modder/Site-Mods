@@ -10,53 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</head>
-<audio id="backgroundMusic" loop>
-  <source src="audio/ambiance.mp3" type="audio/mpeg">
-</audio>
-
-<button id="audioToggle" class="audio-toggle" aria-label="Activer ou couper la musique">
-  <i class="fa-solid fa-volume-high"></i>
-  <span>AUDIO ON</span>
-</button>
-
-<script>
-  const audio = document.getElementById('backgroundMusic');
-  const toggle = document.getElementById('audioToggle');
-
-  audio.volume = 0.15;
-
-  function updateAudioButton() {
-    const icon = toggle.querySelector('i');
-    const text = toggle.querySelector('span');
-
-    if (audio.paused) {
-      icon.className = 'fa-solid fa-volume-xmark';
-      text.textContent = 'AUDIO OFF';
-      toggle.classList.add('muted');
-    } else {
-      icon.className = 'fa-solid fa-volume-high';
-      text.textContent = 'AUDIO ON';
-      toggle.classList.remove('muted');
-    }
-  }
-
-  toggle.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-
-    updateAudioButton();
-  });
-
-  audio.play()
-    .then(() => updateAudioButton())
-    .catch(() => {
-      updateAudioButton();
-    });
-</script>
+</head>  
 <body>
 
 <canvas id="bg-canvas"></canvas>
@@ -67,6 +21,15 @@
 
 <div class="page">
 
+<audio id="backgroundMusic" loop>
+  <source src="audio/ambiance.mp3" type="audio/mpeg">
+</audio>
+
+<button id="audioToggle" class="audio-toggle" aria-label="Activer ou couper la musique">
+  <i class="fa-solid fa-volume-high"></i>
+  <span>AUDIO ON</span>
+</button>  
+  
 <header>
   <div class="header-top">
     <div class="brand">
@@ -449,6 +412,43 @@ function closeModal(){ overlay.classList.remove('active'); }
 
 overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/*-------Audio-----*/
+  const audio = document.getElementById('backgroundMusic');
+  const toggle = document.getElementById('audioToggle');
+
+  audio.volume = 0.15;
+
+  function updateAudioButton() {
+    const icon = toggle.querySelector('i');
+    const text = toggle.querySelector('span');
+
+    if (audio.paused) {
+      icon.className = 'fa-solid fa-volume-xmark';
+      text.textContent = 'AUDIO OFF';
+      toggle.classList.add('muted');
+    } else {
+      icon.className = 'fa-solid fa-volume-high';
+      text.textContent = 'AUDIO ON';
+      toggle.classList.remove('muted');
+    }
+  }
+
+  toggle.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+
+    updateAudioButton();
+  });
+
+  audio.play()
+    .then(() => updateAudioButton())
+    .catch(() => {
+      updateAudioButton();
+    });
 </script>
 
 </body>
