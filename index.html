@@ -173,7 +173,7 @@
    Pour ajouter un mod, copie un bloc et modifie les champs.
    - status        : 'termine' | 'en-cours' | 'avenir'
    - genre         : le style du jeu (ex: 'Horreur', 'Simulation')
-   - modType       : le type de mod (ex: 'Traduction', 'Skin', 'Gameplay')
+   - modType : le ou les types de mod (ex: 'Gameplay' ou ['Traduction', 'Doublage', 'Audio'])
    - poster        : chemin vers l'image d'affiche (ou null pour un placeholder)
    - gallery       : liste de chemins d'images (ou [] si aucune pour l'instant)
    - video         : chemin vers une vidéo .mp4 (ou null)
@@ -390,8 +390,21 @@ const emptyState = document.getElementById('emptyState');
 
 function matchesFilters(mod){
   if (state.status !== 'all' && mod.status !== state.status) return false;
-  if (state.genres.size && !state.genres.has(mod.genre)) return false;
-  if (state.types.size && !state.types.has(mod.modType)) return false;
+
+  if (state.genres.size && !state.genres.has(mod.genre)) {
+    return false;
+  }
+
+  if (state.types.size) {
+    const modTypes = Array.isArray(mod.modType)
+      ? mod.modType
+      : [mod.modType];
+
+    if (!modTypes.some(type => state.types.has(type))) {
+      return false;
+    }
+  }
+
   return true;
 }
 
@@ -487,7 +500,7 @@ function openModal(mod){
     </div>
 
     <div class="tab-panel active" data-panel="description">
-      <p class="modal-desc">${mod.description}</p>
+      <div class="modal-desc">${mod.description}</div>
     </div>
 
     <div class="tab-panel" data-panel="images">
