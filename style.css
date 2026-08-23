@@ -658,6 +658,77 @@ footer{
   .status-tabs{ overflow-x:auto; }
 }
 
+/* ---------- Side strip (logo) ---------- */
+.game-link{
+  display:flex;
+  align-items:center;
+  gap:13px;
+
+  margin-top:20px;
+  padding:14px 16px;
+
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.025);
+
+  color:var(--text);
+  text-decoration:none;
+
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    transform .2s ease;
+}
+
+.game-link:hover{
+  border-color:var(--cyan);
+  background:rgba(94,234,212,.05);
+  transform:translateX(3px);
+}
+
+.game-link-icon{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:30px;
+  height:30px;
+
+  border:1px solid rgba(255,255,255,.1);
+
+  color:var(--cyan);
+  font-size:12px;
+}
+
+.game-link span:nth-child(2){
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.game-link small{
+  color:var(--text-muted);
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:.12em;
+}
+
+.game-link strong{
+  color:#fff;
+  font-size:.9rem;
+  font-weight:500;
+}
+
+.game-link-arrow{
+  margin-left:auto;
+  color:var(--cyan);
+  font-size:16px;
+  transition:transform .2s ease;
+}
+
+.game-link:hover .game-link-arrow{
+  transform:translate(2px,-2px);
+}
+
 /* ---------- Lien créateur / GussDx ---------- */
 
 .creator-link{
