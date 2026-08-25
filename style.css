@@ -213,6 +213,67 @@ header > p{
   line-height:1.7;
 }
 
+.about-work{
+  margin-top:70px;
+  padding-top:45px;
+  border-top:1px solid var(--line);
+}
+
+.about-work-content{
+  max-width:880px;
+  padding:32px;
+
+  border:1px solid var(--line);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(94,234,212,.035),
+      rgba(255,255,255,.012)
+    );
+}
+
+.about-work h2{
+  margin:0 0 20px;
+
+  font-family:var(--mono);
+  font-size:clamp(22px,4vw,30px);
+  font-weight:600;
+
+  color:var(--text);
+}
+
+.about-work p{
+  margin:0 0 18px;
+
+  color:var(--text-muted);
+
+  font-size:14px;
+  line-height:1.8;
+}
+
+.about-work p:last-of-type{
+  margin-bottom:0;
+}
+
+.about-work strong{
+  color:var(--text);
+  font-weight:600;
+}
+
+.about-work-note{
+  margin-top:26px;
+  padding:15px 17px;
+
+  border-left:2px solid var(--cyan);
+  background:rgba(255,255,255,.025);
+
+  color:var(--text-muted);
+
+  font-size:13px;
+  line-height:1.65;
+}
+
 
 /* ============================================================
    HAMBURGER + FILTER PANEL
