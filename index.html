@@ -1,628 +1,1831 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATELIER // MODS</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</head>  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ATELIER // MODS</title>
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+</head>
+
 <body>
 
-<canvas id="bg-canvas"></canvas>
+  <canvas id="bg-canvas"></canvas>
 
-<div class="side-strip">
-  <img class="logo" src="images/logo.png" alt="FaceCorp">
-</div>
-
-<div class="page">
-
-<audio id="backgroundMusic" loop>
-  <source src="audio/ambiance.mp3" type="audio/mpeg">
-</audio>
-
-<button id="audioToggle" class="audio-toggle" aria-label="Activer ou couper la musique">
-  <i class="fa-solid fa-volume-high"></i>
-  <span>AUDIO ON</span>
-</button>  
-  
-<header>
-  <div class="header-top">
-    <div class="brand">
-      <div>
-        <div class="eyebrow">Atelier personnel — Mods de jeux</div>
-        <h1>ATELIER <span>// MODS</span></h1>
-      </div>
-    </div>
-    <button class="hamburger" id="hamburgerBtn" aria-label="Ouvrir les filtres" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+  <div class="side-strip">
+    <img class="logo" src="images/logo.png" alt="FaceCorp">
   </div>
 
-  <p>Modifications, traductions et bricolages sur mesure pour différents jeux. Chaque fiche présente l'avancement, les visuels et — quand c'est disponible — le téléchargement.</p>
+  <div class="page">
 
-  <div class="filter-panel" id="filterPanel">
-    <div class="filter-group">
-      <div class="filter-label">Style de jeu</div>
-      <div class="filter-pills" id="genreFilters"></div>
-    </div>
-    <div class="filter-group">
-      <div class="filter-label">Type de mod</div>
-      <div class="filter-pills" id="typeFilters"></div>
-    </div>
-  </div>
-</header>
+    <!-- ======================================================
+         MUSIQUE DE FOND
+         ====================================================== -->
 
-<main>
-  <div class="status-tabs" id="statusTabs">
-    <button class="status-tab active" data-status="all">Tous</button>
-    <button class="status-tab" data-status="termine">Terminé</button>
-    <button class="status-tab" data-status="en-cours">En cours</button>
-    <button class="status-tab" data-status="avenir">À venir</button>
-  </div>
-  <div class="section-label">Projets</div>
-  <div class="grid" id="grid"></div>
-  <div class="empty-state" id="emptyState">Aucun mod ne correspond à ces filtres.</div>
+    <audio id="backgroundMusic" loop>
+      <source src="audio/ambiance.mp3" type="audio/mpeg">
+    </audio>
 
-  <section class="mod-request">
-  <div class="mod-request-content">
-    <div class="section-label">Demande personnalisée</div>
-
-    <h2>Vous avez une idée de mod ?</h2>
-
-    <p>
-      Vous souhaitez une traduction, un doublage, une modification de textures,
-      d'audio, de vidéos ou un autre type de modification pour un jeu ?
-      Vous pouvez me proposer votre projet directement.
-    </p>
-
-    <div class="mod-request-types">
-      <span>Traduction</span>
-      <span>Doublage</span>
-      <span>Textures</span>
-      <span>Audio</span>
-      <span>Vidéos</span>
-      <span>Autre</span>
-    </div>
-
-    <div class="mod-request-note">
-      <strong>Avant de faire une demande :</strong>
-      la faisabilité dépend du jeu, de son moteur et de la manière dont ses fichiers sont protégés.
-      Certaines demandes peuvent donc être impossibles à réaliser.
-    </div>
-
-    <a
-      href="https://discord.com/users/537775052515573797"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="mod-request-button"
+    <button
+      id="audioToggle"
+      class="audio-toggle"
+      type="button"
+      aria-label="Activer ou couper la musique"
     >
-      <i class="fa-brands fa-discord"></i>
-      Faire une demande sur Discord
-      <span>↗</span>
-    </a>
+      <i class="fa-solid fa-volume-high"></i>
+      <span>AUDIO ON</span>
+    </button>
+
+
+    <!-- ======================================================
+         HEADER
+         ====================================================== -->
+
+    <header>
+
+      <div class="header-top">
+
+        <div class="brand">
+          <div>
+            <div class="eyebrow">Atelier personnel — Mods de jeux</div>
+            <h1>ATELIER <span>// MODS</span></h1>
+          </div>
+        </div>
+
+        <button
+          class="hamburger"
+          id="hamburgerBtn"
+          type="button"
+          aria-label="Ouvrir les filtres"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+
+      <p>
+        Modifications, traductions et bricolages sur mesure pour différents jeux.
+        Chaque fiche présente l'avancement, les visuels et — quand c'est disponible —
+        le téléchargement.
+      </p>
+
+
+      <!-- Filtres avancés -->
+
+      <div class="filter-panel" id="filterPanel">
+
+        <div class="filter-group">
+          <div class="filter-label">Style de jeu</div>
+          <div class="filter-pills" id="genreFilters"></div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label">Type de mod</div>
+          <div class="filter-pills" id="typeFilters"></div>
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- ======================================================
+         CONTENU PRINCIPAL
+         ====================================================== -->
+
+    <main>
+
+      <!-- Recherche -->
+
+      <div class="game-search">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+          type="search"
+          id="gameSearch"
+          placeholder="Rechercher un jeu..."
+          autocomplete="off"
+          aria-label="Rechercher un jeu"
+        >
+
+        <button
+          type="button"
+          id="clearSearch"
+          class="search-clear"
+          aria-label="Effacer la recherche"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+
+      <!-- Statuts -->
+
+      <div class="status-tabs" id="statusTabs">
+
+        <button
+          class="status-tab active"
+          type="button"
+          data-status="all"
+        >
+          Tous
+        </button>
+
+        <button
+          class="status-tab"
+          type="button"
+          data-status="termine"
+        >
+          Terminé
+        </button>
+
+        <button
+          class="status-tab"
+          type="button"
+          data-status="en-cours"
+        >
+          En cours
+        </button>
+
+        <button
+          class="status-tab"
+          type="button"
+          data-status="avenir"
+        >
+          À venir
+        </button>
+
+      </div>
+
+
+      <div class="section-label">Projets</div>
+
+      <div class="grid" id="grid"></div>
+
+      <div class="empty-state" id="emptyState">
+        Aucun mod ne correspond à votre recherche ou à ces filtres.
+      </div>
+
+
+      <!-- ====================================================
+           DEMANDE PERSONNALISÉE
+           ==================================================== -->
+
+      <section class="mod-request">
+
+        <div class="mod-request-content">
+
+          <div class="section-label">Demande personnalisée</div>
+
+          <h2>Vous avez une idée de mod ?</h2>
+
+          <p>
+            Vous souhaitez une traduction, un doublage, une modification de textures,
+            d'audio, de vidéos ou un autre type de modification pour un jeu ?
+            Vous pouvez me proposer votre projet directement.
+          </p>
+
+
+          <div class="mod-request-types">
+            <span>Traduction</span>
+            <span>Doublage</span>
+            <span>Textures</span>
+            <span>Audio</span>
+            <span>Vidéos</span>
+            <span>Autre</span>
+          </div>
+
+
+          <div class="mod-request-note">
+
+            <strong>Avant de faire une demande :</strong>
+
+            la faisabilité dépend du jeu, de son moteur et de la manière
+            dont ses fichiers sont protégés. Certaines demandes peuvent donc
+            être impossibles à réaliser.
+
+          </div>
+
+
+          <a
+            href="https://discord.com/users/537775052515573797"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mod-request-button"
+          >
+            <i class="fa-brands fa-discord"></i>
+            Faire une demande sur Discord
+            <span>↗</span>
+          </a>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- ======================================================
+         FOOTER
+         ====================================================== -->
+
+    <footer>
+
+      <span>ATELIER // MODS — site personnel</span>
+
+      <a
+        href="https://discord.com/users/537775052515573797"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="discord-link"
+        title="Mon Discord"
+        aria-label="Mon Discord"
+      >
+        <i class="fa-brands fa-discord"></i>
+      </a>
+
+    </footer>
+
   </div>
-</section>
-</main>
 
-<footer>
-  <span>ATELIER // MODS — site personnel</span>
 
-  <a href="https://discord.com/users/537775052515573797"
-     target="_blank"
-     rel="noopener noreferrer"
-     class="discord-link"
-     title="Mon Discord"
-     aria-label="Mon Discord">
-    <i class="fab fa-discord"></i>
-  </a>
-</footer>
-  
-</div>
+  <!-- ========================================================
+       MODAL
+       ======================================================== -->
 
-<div class="overlay" id="overlay">
-  <div class="modal" id="modal"></div>
-</div>
+  <div class="overlay" id="overlay">
+    <div class="modal" id="modal"></div>
+  </div>
 
-<script>
-/* ============================================================
-   FOND ANIMÉ — effet réseau / circuit
-   Nœuds qui dérivent lentement et se relient quand ils sont
-   assez proches, avec un pulse occasionnel. Se met en pause
-   si l'onglet n'est pas visible ou si l'utilisateur préfère
-   moins de mouvement (voir le CSS prefers-reduced-motion).
-   ============================================================ */
-(function(){
-  const canvas = document.getElementById('bg-canvas');
-  if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const ctx = canvas.getContext('2d');
 
-  let width, height, nodes;
-  const LINK_DIST = 140;
-  const CYAN = '94, 234, 212';
-  const AMBER = '240, 168, 104';
+  <script>
 
-  function resize(){
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-    const count = Math.min(90, Math.floor((width * height) / 18000));
-    nodes = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.18,
-      vy: (Math.random() - 0.5) * 0.18,
-      r: Math.random() * 1.6 + 0.6,
-      pulse: Math.random() * Math.PI * 2,
-      amber: Math.random() < 0.12
-    }));
-  }
+    /* ============================================================
+       FOND ANIMÉ — effet réseau / circuit
+       ============================================================ */
 
-  function step(){
-    ctx.clearRect(0, 0, width, height);
+    (function(){
 
-    for (const n of nodes){
-      n.x += n.vx; n.y += n.vy;
-      if (n.x < 0 || n.x > width) n.vx *= -1;
-      if (n.y < 0 || n.y > height) n.vy *= -1;
-      n.pulse += 0.02;
+      const canvas = document.getElementById('bg-canvas');
+
+      if (
+        !canvas ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ){
+        return;
+      }
+
+      const ctx = canvas.getContext('2d');
+
+      let width;
+      let height;
+      let nodes;
+
+      const LINK_DIST = 140;
+
+      const CYAN = '94, 234, 212';
+      const AMBER = '240, 168, 104';
+
+
+      function resize(){
+
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+
+        const count = Math.min(
+          90,
+          Math.floor((width * height) / 18000)
+        );
+
+        nodes = Array.from(
+          { length: count },
+          () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+
+            vx: (Math.random() - 0.5) * 0.18,
+            vy: (Math.random() - 0.5) * 0.18,
+
+            r: Math.random() * 1.6 + 0.6,
+
+            pulse: Math.random() * Math.PI * 2,
+
+            amber: Math.random() < 0.12
+          })
+        );
+      }
+
+
+      function step(){
+
+        ctx.clearRect(0, 0, width, height);
+
+
+        for (const n of nodes){
+
+          n.x += n.vx;
+          n.y += n.vy;
+
+          if (n.x < 0 || n.x > width){
+            n.vx *= -1;
+          }
+
+          if (n.y < 0 || n.y > height){
+            n.vy *= -1;
+          }
+
+          n.pulse += 0.02;
+        }
+
+
+        for (let i = 0; i < nodes.length; i++){
+
+          for (let j = i + 1; j < nodes.length; j++){
+
+            const a = nodes[i];
+            const b = nodes[j];
+
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+
+            const dist = Math.sqrt(
+              dx * dx + dy * dy
+            );
+
+            if (dist < LINK_DIST){
+
+              ctx.strokeStyle =
+                `rgba(${CYAN}, ${0.14 * (1 - dist / LINK_DIST)})`;
+
+              ctx.lineWidth = 1;
+
+              ctx.beginPath();
+
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+
+              ctx.stroke();
+            }
+          }
+        }
+
+
+        for (const n of nodes){
+
+          const glow =
+            (Math.sin(n.pulse) + 1) / 2;
+
+          const color =
+            n.amber ? AMBER : CYAN;
+
+          ctx.beginPath();
+
+          ctx.arc(
+            n.x,
+            n.y,
+            n.r + glow * 0.8,
+            0,
+            Math.PI * 2
+          );
+
+          ctx.fillStyle =
+            `rgba(${color}, ${0.35 + glow * 0.35})`;
+
+          ctx.fill();
+        }
+
+
+        if (!document.hidden){
+          requestAnimationFrame(step);
+        }
+      }
+
+
+      document.addEventListener(
+        'visibilitychange',
+        () => {
+
+          if (!document.hidden){
+            requestAnimationFrame(step);
+          }
+        }
+      );
+
+
+      window.addEventListener(
+        'resize',
+        resize
+      );
+
+
+      resize();
+      requestAnimationFrame(step);
+
+    })();
+
+
+    /* ============================================================
+       DONNÉES DES MODS
+
+       Pour ajouter un nouveau mod :
+       copie un objet dans le tableau "mods".
+
+       status :
+       'termine' | 'en-cours' | 'avenir'
+
+       genre :
+       une chaîne de caractères
+       ex : 'Horreur'
+
+       modType :
+       un type :
+       'Doublage'
+
+       OU plusieurs types :
+       ['Traduction', 'Doublage', 'Textures', 'Audio']
+
+       ============================================================ */
+
+
+    const STATUS_LABELS = {
+      'termine': 'Terminé',
+      'en-cours': 'En cours',
+      'avenir': 'À venir'
+    };
+
+
+    const mods = [
+
+      /* ========================================================
+         CSPPI
+         ======================================================== */
+
+      {
+        id: 'CSPPI',
+
+        tag: 'Terminé',
+
+        title: "Conrad Stevenson's Paranormal P.I.",
+
+        status: 'termine',
+
+        genre: 'Horreur',
+
+        modType: [
+          'Traduction',
+          'Doublage',
+          'Textures',
+          'Audio',
+          'Vidéos'
+        ],
+
+        description: `
+
+          <div class="mod-description">
+
+            <p class="description-intro">
+
+              Une adaptation française complète de
+              <strong>Conrad Stevenson's Paranormal P.I.</strong>,
+              pensée pour proposer une expérience entièrement en français,
+              tout en conservant l'ambiance et l'identité du jeu original.
+
+            </p>
+
+
+            <div class="description-section">
+
+              <h3>Une adaptation complète</h3>
+
+              <p>
+
+                Le projet ne se limite pas à une simple traduction des textes.
+                De nombreux éléments du jeu ont été retravaillés afin de proposer
+                une expérience cohérente et immersive en français.
+
+              </p>
+
+
+              <ul class="description-list">
+
+                <li>
+                  Textes et dialogues entièrement traduits en français
+                </li>
+
+                <li>
+                  Voix et dialogues adaptés en français
+                </li>
+
+                <li>
+                  Vidéos du jeu adaptées pour la version française
+                </li>
+
+                <li>
+                  Textures et éléments graphiques traduits
+                </li>
+
+                <li>
+                  Interface et différents éléments visuels adaptés
+                </li>
+
+              </ul>
+
+            </div>
+
+
+            <div class="description-section">
+
+              <h3>Un projet réalisé sur mesure</h3>
+
+              <p>
+
+                Chaque modification a été réalisée spécifiquement pour cette
+                adaptation française, avec pour objectif de rendre le jeu
+                plus accessible aux joueurs francophones sans dénaturer
+                l'expérience originale.
+
+              </p>
+
+            </div>
+
+
+            <div class="description-section">
+
+              <h3>Une version personnalisée pour GussDx</h3>
+
+              <p>
+
+                Cette version du mod a également été spécialement personnalisée
+                pour <strong>GussDx</strong>, afin de pouvoir être utilisée
+                dans ses sessions de jeu et ses streams consacrés
+                à l'enquête paranormale.
+
+              </p>
+
+
+              <a
+                href="https://www.twitch.tv/gussdx"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="creator-link"
+              >
+
+                <span class="creator-link-icon">
+                  ◆
+                </span>
+
+                <span>
+                  <small>STREAMER</small>
+                  <strong>GussDx</strong>
+                </span>
+
+                <span class="creator-link-arrow">
+                  ↗
+                </span>
+
+              </a>
+
+            </div>
+
+
+            <div class="description-section">
+
+              <h3>Le jeu original</h3>
+
+              <p>
+
+                Vous souhaitez découvrir le jeu avant d'installer le mod ?
+                Retrouvez
+                <strong>Conrad Stevenson's Paranormal P.I.</strong>
+                sur Steam.
+
+              </p>
+
+
+              <a
+                href="https://store.steampowered.com/app/1872860/Conrad_Stevensons_Paranormal_PI/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="game-link"
+              >
+
+                <span class="game-link-icon">
+                  ↗
+                </span>
+
+                <span>
+                  <small>DISPONIBLE SUR</small>
+                  <strong>Steam</strong>
+                </span>
+
+                <span class="game-link-arrow">
+                  ↗
+                </span>
+
+              </a>
+
+            </div>
+
+
+            <div class="description-status">
+
+              <span class="status-dot"></span>
+
+              <span>
+                Projet terminé — version française complète
+              </span>
+
+            </div>
+
+          </div>
+        `,
+
+        poster:
+          'images/CSPPI/library_600x900.jpg',
+
+        gallery: [],
+
+        video: null,
+
+        installSteps: [
+          "Télécharge le fichier .pak depuis le lien ci-dessous.",
+          "Place-le dans le dossier Paks du jeu.",
+          "Lance le jeu normalement."
+        ],
+
+        downloadUrl: null,
+
+        downloadNote:
+          "Le téléchargement du mod sera ajouté ici lorsqu'il sera disponible."
+      },
+
+
+      /* ========================================================
+         POLICE SIMULATOR
+         ======================================================== */
+
+      {
+        id: 'police-simulator',
+
+        tag: 'En cours',
+
+        title:
+          'Police Simulator: Patrol Officers',
+
+        status:
+          'en-cours',
+
+        genre:
+          'Simulation',
+
+        modType: [
+          'Doublage',
+          'Audio'
+        ],
+
+        description: `
+
+          <div class="mod-description">
+
+            <p class="description-intro">
+
+              Une version française de
+              <strong>Police Simulator: Patrol Officers</strong>,
+              pensée pour rendre les patrouilles et les interventions
+              plus immersives pour les joueurs francophones.
+
+            </p>
+
+
+            <div class="description-section">
+
+              <h3>Le projet</h3>
+
+              <p>
+
+                Les voix originales du jeu seront progressivement
+                remplacées par un
+                <strong>doublage 100 % français</strong>.
+
+                L'objectif est de proposer une expérience plus naturelle
+                et accessible, tout en conservant l'ambiance
+                et le ton du jeu original.
+
+              </p>
+
+            </div>
+
+
+            <div class="description-section">
+
+              <h3>Ce qui va changer</h3>
+
+              <ul class="description-list">
+
+                <li>
+                  Doublage des voix originales en français
+                </li>
+
+                <li>
+                  Dialogues adaptés pour conserver leur sens
+                  et leur contexte
+                </li>
+
+                <li>
+                  Intégration directe des nouvelles voix dans le jeu
+                </li>
+
+                <li>
+                  Une expérience plus immersive
+                  pour les joueurs francophones
+                </li>
+
+              </ul>
+
+            </div>
+
+
+            <div class="description-section">
+
+              <h3>Le jeu original</h3>
+
+              <p>
+
+                Vous souhaitez découvrir le jeu avant d'installer le mod ?
+                Retrouvez
+                <strong>Police Simulator: Patrol Officers</strong>
+                sur Steam.
+
+              </p>
+
+
+              <a
+                href="https://store.steampowered.com/app/997010/Police_Simulator_Patrol_Officers/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="game-link"
+              >
+
+                <span class="game-link-icon">
+                  ↗
+                </span>
+
+                <span>
+                  <small>DISPONIBLE SUR</small>
+                  <strong>Steam</strong>
+                </span>
+
+                <span class="game-link-arrow">
+                  ↗
+                </span>
+
+              </a>
+
+            </div>
+
+
+            <div class="description-status">
+
+              <span class="status-dot"></span>
+
+              <span>
+                Projet actuellement en développement
+              </span>
+
+            </div>
+
+          </div>
+        `,
+
+        poster:
+          'images/police-simulator/library_600x900.jpg',
+
+        gallery: [],
+
+        video: null,
+
+        installSteps: [
+          "Télécharge le fichier .pak depuis le lien ci-dessous.",
+          "Place-le dans le dossier Paks du jeu.",
+          "Lance le jeu normalement."
+        ],
+
+        downloadUrl: null,
+
+        downloadNote:
+          "Le mod n'est pas encore disponible au téléchargement."
+      }
+
+    ];
+
+
+    /* ============================================================
+       ÉTAT DES FILTRES
+       ============================================================ */
+
+    const state = {
+
+      status:
+        'all',
+
+      genres:
+        new Set(),
+
+      types:
+        new Set(),
+
+      search:
+        ''
+
+    };
+
+
+    /* ============================================================
+       RENDU DE LA GRILLE
+       ============================================================ */
+
+    const grid =
+      document.getElementById('grid');
+
+    const emptyState =
+      document.getElementById('emptyState');
+
+
+    function getModTypes(mod){
+
+      return Array.isArray(mod.modType)
+        ? mod.modType
+        : [mod.modType];
+
     }
 
-    for (let i = 0; i < nodes.length; i++){
-      for (let j = i + 1; j < nodes.length; j++){
-        const a = nodes[i], b = nodes[j];
-        const dx = a.x - b.x, dy = a.y - b.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < LINK_DIST){
-          ctx.strokeStyle = `rgba(${CYAN}, ${0.14 * (1 - dist / LINK_DIST)})`;
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
+
+    function normalizeText(value){
+
+      return String(value || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+
+    }
+
+
+    function matchesFilters(mod){
+
+      /* Statut */
+
+      if (
+        state.status !== 'all' &&
+        mod.status !== state.status
+      ){
+        return false;
+      }
+
+
+      /* Genre */
+
+      if (
+        state.genres.size &&
+        !state.genres.has(mod.genre)
+      ){
+        return false;
+      }
+
+
+      /* Types */
+
+      if (state.types.size){
+
+        const modTypes =
+          getModTypes(mod);
+
+        const hasSelectedType =
+          modTypes.some(
+            type => state.types.has(type)
+          );
+
+        if (!hasSelectedType){
+          return false;
         }
+      }
+
+
+      /* Recherche */
+
+      if (state.search){
+
+        const search =
+          normalizeText(state.search);
+
+        const searchableText =
+          normalizeText([
+            mod.title,
+            mod.genre,
+            mod.status,
+            STATUS_LABELS[mod.status],
+            ...getModTypes(mod)
+          ].join(' '));
+
+        if (!searchableText.includes(search)){
+          return false;
+        }
+      }
+
+
+      return true;
+    }
+
+
+    function getCardDescription(mod){
+
+      const temp =
+        document.createElement('div');
+
+      temp.innerHTML =
+        mod.description;
+
+      const intro =
+        temp.querySelector('.description-intro');
+
+      if (intro){
+        return intro.textContent.trim();
+      }
+
+      return temp.textContent
+        .trim()
+        .slice(0, 260);
+    }
+
+
+    function renderGrid(){
+
+      const filtered =
+        mods.filter(matchesFilters);
+
+      grid.innerHTML = '';
+
+
+      emptyState.style.display =
+        filtered.length
+          ? 'none'
+          : 'block';
+
+
+      filtered.forEach(mod => {
+
+        const card =
+          document.createElement('div');
+
+        card.className =
+          'card';
+
+        card.tabIndex =
+          0;
+
+        card.setAttribute(
+          'role',
+          'button'
+        );
+
+        card.setAttribute(
+          'aria-label',
+          `Ouvrir ${mod.title}`
+        );
+
+
+        const types =
+          getModTypes(mod);
+
+
+        card.innerHTML = `
+
+          <span class="bracket-bl"></span>
+          <span class="bracket-br"></span>
+
+          <div class="poster">
+
+            <span class="poster-tag">
+              ${mod.tag}
+            </span>
+
+            ${
+              mod.poster
+                ? `
+                  <img
+                    src="${mod.poster}"
+                    alt="${mod.title}"
+                  >
+                `
+                : `
+                  <span class="poster-initial">
+                    ${mod.title.charAt(0)}
+                  </span>
+                `
+            }
+
+          </div>
+
+
+          <div class="card-body">
+
+            <div class="card-title">
+              ${mod.title}
+            </div>
+
+            <div class="card-desc">
+              ${getCardDescription(mod)}
+            </div>
+
+            <div class="card-status">
+              ${
+                STATUS_LABELS[mod.status] ||
+                mod.status
+              }
+            </div>
+
+            <div class="card-types">
+              ${
+                types
+                  .map(
+                    type =>
+                      `<span>${type}</span>`
+                  )
+                  .join('')
+              }
+            </div>
+
+          </div>
+        `;
+
+
+        card.addEventListener(
+          'click',
+          () => openModal(mod)
+        );
+
+
+        card.addEventListener(
+          'keydown',
+          event => {
+
+            if (
+              event.key === 'Enter' ||
+              event.key === ' '
+            ){
+              event.preventDefault();
+              openModal(mod);
+            }
+          }
+        );
+
+
+        grid.appendChild(card);
+      });
+    }
+
+
+    /* ============================================================
+       ONGLETS DE STATUT
+       ============================================================ */
+
+    document
+      .querySelectorAll('.status-tab')
+      .forEach(btn => {
+
+        btn.addEventListener(
+          'click',
+          () => {
+
+            document
+              .querySelectorAll('.status-tab')
+              .forEach(
+                b => b.classList.remove('active')
+              );
+
+
+            btn.classList.add('active');
+
+
+            state.status =
+              btn.dataset.status;
+
+
+            renderGrid();
+          }
+        );
+
+      });
+
+
+    /* ============================================================
+       FILTRES GENRE / TYPE
+       ============================================================ */
+
+    function buildPills(
+      container,
+      values,
+      set
+    ){
+
+      container.innerHTML = '';
+
+
+      const uniqueValues =
+        [...new Set(values)]
+          .filter(Boolean)
+          .sort(
+            (a, b) =>
+              a.localeCompare(
+                b,
+                'fr',
+                {
+                  sensitivity: 'base'
+                }
+              )
+          );
+
+
+      uniqueValues.forEach(value => {
+
+        const pill =
+          document.createElement('button');
+
+        pill.className =
+          'pill';
+
+        pill.type =
+          'button';
+
+        pill.textContent =
+          value;
+
+
+        pill.addEventListener(
+          'click',
+          () => {
+
+            if (set.has(value)){
+
+              set.delete(value);
+
+              pill.classList.remove(
+                'active'
+              );
+
+            } else {
+
+              set.add(value);
+
+              pill.classList.add(
+                'active'
+              );
+            }
+
+
+            renderGrid();
+          }
+        );
+
+
+        container.appendChild(pill);
+      });
+    }
+
+
+    buildPills(
+
+      document.getElementById(
+        'genreFilters'
+      ),
+
+      mods.map(
+        mod => mod.genre
+      ),
+
+      state.genres
+
+    );
+
+
+    buildPills(
+
+      document.getElementById(
+        'typeFilters'
+      ),
+
+      mods.flatMap(
+        mod => getModTypes(mod)
+      ),
+
+      state.types
+
+    );
+
+
+    /* ============================================================
+       RECHERCHE
+       ============================================================ */
+
+    const gameSearch =
+      document.getElementById('gameSearch');
+
+    const clearSearch =
+      document.getElementById('clearSearch');
+
+
+    function updateSearch(){
+
+      state.search =
+        gameSearch.value;
+
+
+      clearSearch.classList.toggle(
+        'visible',
+        gameSearch.value.length > 0
+      );
+
+
+      renderGrid();
+    }
+
+
+    gameSearch.addEventListener(
+      'input',
+      updateSearch
+    );
+
+
+    clearSearch.addEventListener(
+      'click',
+      () => {
+
+        gameSearch.value =
+          '';
+
+        state.search =
+          '';
+
+        clearSearch.classList.remove(
+          'visible'
+        );
+
+        renderGrid();
+
+        gameSearch.focus();
+      }
+    );
+
+
+    /* ============================================================
+       MENU HAMBURGER
+       ============================================================ */
+
+    const hamburgerBtn =
+      document.getElementById('hamburgerBtn');
+
+    const filterPanel =
+      document.getElementById('filterPanel');
+
+
+    hamburgerBtn.addEventListener(
+      'click',
+      () => {
+
+        const open =
+          filterPanel.classList.toggle(
+            'open'
+          );
+
+
+        hamburgerBtn.classList.toggle(
+          'open',
+          open
+        );
+
+
+        hamburgerBtn.setAttribute(
+          'aria-expanded',
+          String(open)
+        );
+
+      }
+    );
+
+
+    /* ============================================================
+       MODAL
+       ============================================================ */
+
+    const overlay =
+      document.getElementById('overlay');
+
+    const modal =
+      document.getElementById('modal');
+
+
+    function openModal(mod){
+
+      const tabs = [
+        {
+          id: 'description',
+          label: 'Description'
+        },
+        {
+          id: 'images',
+          label: 'Images'
+        },
+        {
+          id: 'video',
+          label: 'Vidéos'
+        },
+        {
+          id: 'download',
+          label: 'Téléchargement'
+        }
+      ];
+
+
+      const types =
+        getModTypes(mod);
+
+
+      modal.innerHTML = `
+
+        <button
+          class="modal-close"
+          id="closeBtn"
+          type="button"
+          aria-label="Fermer"
+        >
+          ✕
+        </button>
+
+
+        <div class="modal-header">
+
+          <div class="modal-tag">
+
+            ${
+              STATUS_LABELS[mod.status] ||
+              mod.status
+            }
+
+            —
+
+            ${types.join(' / ')}
+
+          </div>
+
+          <div class="modal-title">
+            ${mod.title}
+          </div>
+
+        </div>
+
+
+        <div class="tabs">
+
+          ${
+            tabs
+              .map(
+                (tab, index) => `
+                  <button
+                    class="tab-btn ${
+                      index === 0
+                        ? 'active'
+                        : ''
+                    }"
+                    type="button"
+                    data-tab="${tab.id}"
+                  >
+                    ${tab.label}
+                  </button>
+                `
+              )
+              .join('')
+          }
+
+        </div>
+
+
+        <div
+          class="tab-panel active"
+          data-panel="description"
+        >
+
+          <div class="modal-desc">
+            ${mod.description}
+          </div>
+
+        </div>
+
+
+        <div
+          class="tab-panel"
+          data-panel="images"
+        >
+
+          ${
+            mod.gallery &&
+            mod.gallery.length
+
+              ? `
+
+                <div class="gallery-grid">
+
+                  ${
+                    mod.gallery
+                      .map(
+                        src => `
+                          <img
+                            src="${src}"
+                            alt="${mod.title}"
+                          >
+                        `
+                      )
+                      .join('')
+                  }
+
+                </div>
+
+              `
+
+              : `
+
+                <div class="placeholder-box">
+                  Aucune image pour l'instant.
+                </div>
+
+              `
+          }
+
+        </div>
+
+
+        <div
+          class="tab-panel"
+          data-panel="video"
+        >
+
+          ${
+            mod.video
+
+              ? `
+
+                <video
+                  controls
+                  src="${mod.video}"
+                ></video>
+
+              `
+
+              : `
+
+                <div class="placeholder-box">
+                  Aucune vidéo pour l'instant.
+                </div>
+
+              `
+          }
+
+        </div>
+
+
+        <div
+          class="tab-panel"
+          data-panel="download"
+        >
+
+          ${
+            mod.installSteps
+
+              ? `
+
+                <div class="steps">
+
+                  ${
+                    mod.installSteps
+                      .map(
+                        step => `
+                          <div class="step">
+                            ${step}
+                          </div>
+                        `
+                      )
+                      .join('')
+                  }
+
+                </div>
+
+              `
+
+              : ''
+          }
+
+
+          <div class="download-bar">
+
+            ${
+              mod.downloadUrl
+
+                ? `
+
+                  <a
+                    class="btn-download"
+                    href="${mod.downloadUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Télécharger
+                  </a>
+
+                `
+
+                : `
+
+                  <span class="no-download">
+                    ${
+                      mod.downloadNote ||
+                      'Pas de téléchargement disponible.'
+                    }
+                  </span>
+
+                `
+            }
+
+          </div>
+
+        </div>
+      `;
+
+
+      modal
+        .querySelectorAll('.tab-btn')
+        .forEach(btn => {
+
+          btn.addEventListener(
+            'click',
+            () => {
+
+              modal
+                .querySelectorAll('.tab-btn')
+                .forEach(
+                  b => b.classList.remove(
+                    'active'
+                  )
+                );
+
+
+              modal
+                .querySelectorAll('.tab-panel')
+                .forEach(
+                  panel =>
+                    panel.classList.remove(
+                      'active'
+                    )
+                );
+
+
+              btn.classList.add(
+                'active'
+              );
+
+
+              const panel =
+                modal.querySelector(
+                  `.tab-panel[data-panel="${btn.dataset.tab}"]`
+                );
+
+
+              if (panel){
+                panel.classList.add(
+                  'active'
+                );
+              }
+            }
+          );
+
+        });
+
+
+      modal
+        .querySelector('#closeBtn')
+        .addEventListener(
+          'click',
+          closeModal
+        );
+
+
+      overlay.classList.add(
+        'active'
+      );
+
+
+      document.body.classList.add(
+        'modal-open'
+      );
+    }
+
+
+    function closeModal(){
+
+      overlay.classList.remove(
+        'active'
+      );
+
+      document.body.classList.remove(
+        'modal-open'
+      );
+
+    }
+
+
+    overlay.addEventListener(
+      'click',
+      event => {
+
+        if (event.target === overlay){
+          closeModal();
+        }
+      }
+    );
+
+
+    document.addEventListener(
+      'keydown',
+      event => {
+
+        if (event.key === 'Escape'){
+          closeModal();
+        }
+      }
+    );
+
+
+    /* ============================================================
+       AUDIO
+       ============================================================ */
+
+    const audio =
+      document.getElementById(
+        'backgroundMusic'
+      );
+
+    const audioToggle =
+      document.getElementById(
+        'audioToggle'
+      );
+
+
+    audio.volume =
+      0.15;
+
+
+    function updateAudioButton(){
+
+      const icon =
+        audioToggle.querySelector('i');
+
+      const text =
+        audioToggle.querySelector('span');
+
+
+      if (audio.paused){
+
+        icon.className =
+          'fa-solid fa-volume-xmark';
+
+        text.textContent =
+          'AUDIO OFF';
+
+        audioToggle.classList.add(
+          'muted'
+        );
+
+        audioToggle.setAttribute(
+          'aria-label',
+          'Activer la musique'
+        );
+
+      } else {
+
+        icon.className =
+          'fa-solid fa-volume-high';
+
+        text.textContent =
+          'AUDIO ON';
+
+        audioToggle.classList.remove(
+          'muted'
+        );
+
+        audioToggle.setAttribute(
+          'aria-label',
+          'Couper la musique'
+        );
       }
     }
 
-    for (const n of nodes){
-      const glow = (Math.sin(n.pulse) + 1) / 2;
-      const color = n.amber ? AMBER : CYAN;
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r + glow * 0.8, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${color}, ${0.35 + glow * 0.35})`;
-      ctx.fill();
-    }
 
-    if (!document.hidden) requestAnimationFrame(step);
-  }
+    async function startAudio(){
 
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) requestAnimationFrame(step);
-  });
+      try {
 
-  window.addEventListener('resize', resize);
-  resize();
-  requestAnimationFrame(step);
-})();
+        await audio.play();
 
-/* ============================================================
-   DONNÉES DES MODS
-   Pour ajouter un mod, copie un bloc et modifie les champs.
-   - status        : 'termine' | 'en-cours' | 'avenir'
-   - genre         : le style du jeu (ex: 'Horreur', 'Simulation')
-   - modType : le ou les types de mod (ex: 'Gameplay' ou ['Traduction', 'Doublage', 'Audio'])
-   - poster        : chemin vers l'image d'affiche (ou null pour un placeholder)
-   - gallery       : liste de chemins d'images (ou [] si aucune pour l'instant)
-   - video         : chemin vers une vidéo .mp4 (ou null)
-   - installSteps  : liste d'étapes texte (ou null pour ne pas afficher l'onglet)
-   - downloadUrl   : lien de téléchargement (ou null pour ne rien afficher)
-   ============================================================ */
-const STATUS_LABELS = {
-  'termine': 'Terminé',
-  'en-cours': 'En cours',
-  'avenir': 'À venir'
-};
+      } catch (error) {
 
-const mods = [
-{
-id: 'CSPPI',
-tag: 'Terminé',
-title: "Conrad Stevenson's Paranormal P.I.",
-status: 'termine',
-genre: 'Horreur',
-modType: 'Traduction',
-description: `
-  <div class="mod-description">
+        /*
+          Les navigateurs peuvent bloquer
+          l'autoplay avec du son.
+        */
 
-    <p class="description-intro">
-      Une adaptation française complète de
-      <strong>Conrad Stevenson's Paranormal P.I.</strong>,
-      pensée pour proposer une expérience entièrement en français,
-      tout en conservant l'ambiance et l'identité du jeu original.
-    </p>
+      }
 
-    <div class="description-section">
-      <h3>Une adaptation complète</h3>
-
-      <p>
-        Le projet ne se limite pas à une simple traduction des textes.
-        De nombreux éléments du jeu ont été retravaillés afin de proposer
-        une expérience cohérente et immersive en français.
-      </p>
-
-      <ul class="description-list">
-        <li>Textes et dialogues entièrement traduits en français</li>
-        <li>Voix et dialogues adaptés en français</li>
-        <li>Vidéos du jeu adaptées pour la version française</li>
-        <li>Textures et éléments graphiques traduits</li>
-        <li>Interface et différents éléments visuels adaptés</li>
-      </ul>
-    </div>
-
-    <div class="description-section">
-      <h3>Un projet réalisé sur mesure</h3>
-
-      <p>
-        Chaque modification a été réalisée spécifiquement pour cette
-        adaptation française, avec pour objectif de rendre le jeu
-        plus accessible aux joueurs francophones sans dénaturer
-        l'expérience originale.
-      </p>
-    </div>
-
-    <div class="description-section">
-      <h3>Une version personnalisée pour GussDx</h3>
-
-      <p>
-        Cette version du mod a également été spécialement personnalisée
-        pour <strong>GussDx</strong>, afin de pouvoir être utilisée dans
-        ses sessions de jeu et ses streams consacrés à l'enquête paranormale.
-      </p>
-
-      <a
-        href="https://www.twitch.tv/gussdx"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="creator-link"
-      >
-        <span class="creator-link-icon">◆</span>
-
-        <span>
-          <small>STREAMER</small>
-          <strong>GussDx</strong>
-        </span>
-
-        <span class="creator-link-arrow">↗</span>
-      </a>
-    </div>
-
-    <div class="description-section">
-      <h3>Le jeu original</h3>
-
-      <p>
-        Vous souhaitez découvrir le jeu avant d'installer le mod ?
-        Retrouvez <strong>Conrad Stevenson's Paranormal P.I.</strong>
-        sur Steam.
-      </p>
-
-      <a
-        href="https://store.steampowered.com/app/1872860/Conrad_Stevensons_Paranormal_PI/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="game-link"
-      >
-        <span class="game-link-icon">↗</span>
-
-        <span>
-          <small>DISPONIBLE SUR</small>
-          <strong>Steam</strong>
-        </span>
-
-        <span class="game-link-arrow">↗</span>
-      </a>
-    </div>
-
-    <div class="description-status">
-      <span class="status-dot"></span>
-      <span>Projet terminé — version française complète</span>
-    </div>
-
-  </div>
-`,
-poster: 'images/CSPPI/library_600x900.jpg',
-gallery: [],
-video: null,
-},
-{
-  id: 'police-simulator',
-  tag: 'En cours',
-  title: 'Police Simulator: Patrol Officers',
-  status: 'en-cours',
-  genre: 'Simulation',
-  modType: 'Doublage',
-  description: `
-    <div class="mod-description">
-      <p class="description-intro">
-        Une version française de <strong>Police Simulator: Patrol Officers</strong>,
-        pensée pour rendre les patrouilles et les interventions plus immersives
-        pour les joueurs francophones.
-      </p>
-
-      <div class="description-section">
-        <h3>Le projet</h3>
-        <p>
-          Les voix originales du jeu seront progressivement remplacées par un
-          <strong>doublage 100 % français</strong>. L'objectif est de proposer
-          une expérience plus naturelle et accessible, tout en conservant
-          l'ambiance et le ton du jeu original.
-        </p>
-      </div>
-
-      <div class="description-section">
-        <h3>Ce qui va changer</h3>
-
-        <ul class="description-list">
-          <li>Doublage des voix originales en français</li>
-          <li>Dialogues adaptés pour conserver leur sens et leur contexte</li>
-          <li>Intégration directe des nouvelles voix dans le jeu</li>
-          <li>Une expérience plus immersive pour les joueurs francophones</li>
-        </ul>
-      </div>
-
-      <div class="description-section">
-      <h3>Le jeu original</h3>
-
-      <p>
-        Vous souhaitez découvrir le jeu avant d'installer le mod ?
-        Retrouvez <strong>Police Simulator: Patrol Officers</strong>
-        sur Steam.
-      </p>
-
-      <a
-        href="https://store.steampowered.com/app/997010/Police_Simulator_Patrol_Officers/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="game-link"
-      >
-        <span class="game-link-icon">↗</span>
-
-        <span>
-          <small>DISPONIBLE SUR</small>
-          <strong>Steam</strong>
-        </span>
-
-        <span class="game-link-arrow">↗</span>
-      </a>
-    </div>
-
-      <div class="description-status">
-        <span class="status-dot"></span>
-        <span>Projet actuellement en développement</span>
-      </div>
-    </div>
-  `,
-  poster: 'images/police-simulator/library_600x900.jpg',
-  gallery: [],
-  video: null,
-  installSteps: [
-    "Télécharge le fichier .pak depuis le lien ci-dessous.",
-    "Place-le dans le dossier Paks du jeu.",
-    "Lance le jeu normalement."
-  ],
-  downloadUrl: null,
-  downloadNote: "Le mod n'est pas encore disponible au téléchargement."
-}
-];
-
-/* ---------------- État des filtres ---------------- */
-const state = {
-  status: 'all',
-  genres: new Set(),
-  types: new Set()
-};
-
-/* ---------------- Rendu de la grille ---------------- */
-const grid = document.getElementById('grid');
-const emptyState = document.getElementById('emptyState');
-
-function matchesFilters(mod){
-  if (state.status !== 'all' && mod.status !== state.status) return false;
-
-  if (state.genres.size && !state.genres.has(mod.genre)) {
-    return false;
-  }
-
-  if (state.types.size) {
-    const modTypes = Array.isArray(mod.modType)
-      ? mod.modType
-      : [mod.modType];
-
-    if (!modTypes.some(type => state.types.has(type))) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-function renderGrid(){
-  const filtered = mods.filter(matchesFilters);
-  grid.innerHTML = '';
-  emptyState.style.display = filtered.length ? 'none' : 'block';
-
-  filtered.forEach(mod => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <span class="bracket-bl"></span><span class="bracket-br"></span>
-      <div class="poster">
-        <span class="poster-tag">${mod.tag}</span>
-        ${mod.poster
-          ? `<img src="${mod.poster}" alt="${mod.title}">`
-          : `<span class="poster-initial">${mod.title.charAt(0)}</span>`}
-      </div>
-      <div class="card-body">
-        <div class="card-title">${mod.title}</div>
-        <div class="card-desc">${mod.description}</div>
-        <div class="card-status">${STATUS_LABELS[mod.status] || mod.status}</div>
-      </div>
-    `;
-    card.addEventListener('click', () => openModal(mod));
-    grid.appendChild(card);
-  });
-}
-
-/* ---------------- Onglets de statut ---------------- */
-document.querySelectorAll('.status-tab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.status-tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    state.status = btn.dataset.status;
-    renderGrid();
-  });
-});
-
-/* ---------------- Filtres genre / type (menu hamburger) ---------------- */
-function buildPills(container, values, set){
-  container.innerHTML = '';
-  [...new Set(values)].forEach(value => {
-    const pill = document.createElement('button');
-    pill.className = 'pill';
-    pill.type = 'button';
-    pill.textContent = value;
-    pill.addEventListener('click', () => {
-      if (set.has(value)){ set.delete(value); pill.classList.remove('active'); }
-      else { set.add(value); pill.classList.add('active'); }
-      renderGrid();
-    });
-    container.appendChild(pill);
-  });
-}
-
-buildPills(document.getElementById('genreFilters'), mods.map(m => m.genre), state.genres);
-buildPills(document.getElementById('typeFilters'), mods.map(m => m.modType), state.types);
-
-/* ---------------- Menu hamburger ---------------- */
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const filterPanel = document.getElementById('filterPanel');
-
-hamburgerBtn.addEventListener('click', () => {
-  const open = filterPanel.classList.toggle('open');
-  hamburgerBtn.classList.toggle('open', open);
-  hamburgerBtn.setAttribute('aria-expanded', String(open));
-});
-
-renderGrid();
-
-/* ---------------- Modal ---------------- */
-const overlay = document.getElementById('overlay');
-const modal = document.getElementById('modal');
-
-function openModal(mod){
-  const tabs = [
-    { id:'description', label:'Description' },
-    { id:'images', label:'Images' },
-    { id:'video', label:'Vidéos' },
-    { id:'download', label:'Téléchargement' }
-  ];
-
-  modal.innerHTML = `
-    <button class="modal-close" id="closeBtn">✕</button>
-    <div class="modal-header">
-      <div class="modal-tag">${mod.tag} — ${STATUS_LABELS[mod.status] || mod.status}</div>
-      <div class="modal-title">${mod.title}</div>
-    </div>
-    <div class="tabs">
-      ${tabs.map((t,i) => `<button class="tab-btn ${i===0?'active':''}" data-tab="${t.id}">${t.label}</button>`).join('')}
-    </div>
-
-    <div class="tab-panel active" data-panel="description">
-      <div class="modal-desc">${mod.description}</div>
-    </div>
-
-    <div class="tab-panel" data-panel="images">
-      ${mod.gallery.length
-        ? `<div class="gallery-grid">${mod.gallery.map(src => `<img src="${src}" alt="${mod.title}">`).join('')}</div>`
-        : `<div class="placeholder-box">Aucune image pour l'instant — ajoute des chemins dans "gallery" pour ce mod.</div>`}
-    </div>
-
-    <div class="tab-panel" data-panel="video">
-      ${mod.video
-        ? `<video controls src="${mod.video}"></video>`
-        : `<div class="placeholder-box">Aucune vidéo pour l'instant — ajoute un chemin dans "video" pour ce mod.</div>`}
-    </div>
-
-    <div class="tab-panel" data-panel="download">
-      ${mod.installSteps ? `
-      <div class="steps">
-        ${mod.installSteps.map(s => `<div class="step">${s}</div>`).join('')}
-      </div>` : ''}
-      <div class="download-bar">
-        ${mod.downloadUrl
-          ? `<a class="btn-download" href="${mod.downloadUrl}">Télécharger</a>`
-          : `<span class="no-download">${mod.downloadNote || 'Pas de téléchargement disponible.'}</span>`}
-      </div>
-    </div>
-  `;
-
-  modal.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      modal.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      modal.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      modal.querySelector(`.tab-panel[data-panel="${btn.dataset.tab}"]`).classList.add('active');
-    });
-  });
-
-  modal.querySelector('#closeBtn').addEventListener('click', closeModal);
-  overlay.classList.add('active');
-}
-
-function closeModal(){ overlay.classList.remove('active'); }
-
-overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-/*-------Audio-----*/
-  const audio = document.getElementById('backgroundMusic');
-  const toggle = document.getElementById('audioToggle');
-
-  audio.volume = 0.15;
-
-  function updateAudioButton() {
-    const icon = toggle.querySelector('i');
-    const text = toggle.querySelector('span');
-
-    if (audio.paused) {
-      icon.className = 'fa-solid fa-volume-xmark';
-      text.textContent = 'AUDIO OFF';
-      toggle.classList.add('muted');
-    } else {
-      icon.className = 'fa-solid fa-volume-high';
-      text.textContent = 'AUDIO ON';
-      toggle.classList.remove('muted');
-    }
-  }
-
-  toggle.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-
-    updateAudioButton();
-  });
-
-  audio.play()
-    .then(() => updateAudioButton())
-    .catch(() => {
       updateAudioButton();
-    });
-</script>
+    }
+
+
+    audioToggle.addEventListener(
+      'click',
+      async () => {
+
+        if (audio.paused){
+
+          try {
+            await audio.play();
+          } catch (error) {
+            console.error(
+              'Impossible de lancer la musique.',
+              error
+            );
+          }
+
+        } else {
+
+          audio.pause();
+
+        }
+
+
+        updateAudioButton();
+      }
+    );
+
+
+    /*
+      Si l'autoplay est bloqué,
+      le premier clic sur la page
+      essaie de lancer la musique.
+    */
+
+    document.addEventListener(
+      'click',
+      () => {
+
+        if (audio.paused){
+          startAudio();
+        }
+
+      },
+      {
+        once: true,
+        capture: true
+      }
+    );
+
+
+    /* ============================================================
+       INITIALISATION
+       ============================================================ */
+
+    renderGrid();
+
+    startAudio();
+
+  </script>
 
 </body>
 </html>
