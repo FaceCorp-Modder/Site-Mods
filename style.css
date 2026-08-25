@@ -270,16 +270,19 @@ header > p{
 
 .filter-panel{
   max-height:0;
+  margin-bottom:0;
   overflow:hidden;
 
   transition:
     max-height .3s ease,
-    margin-top .3s ease;
+    margin-top .3s ease,
+    margin-bottom .3s ease;
 }
 
 .filter-panel.open{
   max-height:420px;
-  margin-top:28px;
+  margin-top:0;
+  margin-bottom:26px;
 }
 
 .filter-group{
@@ -568,7 +571,7 @@ main{
 
 .projects-header{
   display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(280px,420px);
+  grid-template-columns:minmax(0,1fr) minmax(340px,480px);
   gap:24px;
   align-items:center;
 
@@ -579,11 +582,21 @@ main{
   margin-bottom:0;
 }
 
-.projects-header .game-search{
+.projects-controls{
   justify-self:end;
 
   width:100%;
-  max-width:420px;
+  max-width:480px;
+
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr);
+  gap:10px;
+  align-items:center;
+}
+
+.projects-controls .game-search{
+  width:100%;
+  max-width:none;
 
   margin-bottom:0;
 }
@@ -1917,7 +1930,7 @@ footer{
     align-items:start;
   }
 
-  .projects-header .game-search{
+  .projects-controls{
     justify-self:stretch;
     max-width:none;
   }
@@ -2035,7 +2048,17 @@ footer{
     margin-bottom:18px;
   }
 
-  .projects-header .game-search{
+  .projects-controls{
+    grid-template-columns:40px minmax(0,1fr);
+    gap:8px;
+  }
+
+  .projects-controls .hamburger{
+    width:40px;
+    height:40px;
+  }
+
+  .projects-controls .game-search{
     margin-bottom:0;
   }
 

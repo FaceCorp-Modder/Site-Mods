@@ -68,18 +68,6 @@
           </div>
         </div>
 
-        <button
-          class="hamburger"
-          id="hamburgerBtn"
-          type="button"
-          aria-label="Ouvrir les filtres"
-          aria-expanded="false"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
       </div>
 
       <p>
@@ -87,21 +75,6 @@
         Chaque fiche présente l'avancement, les visuels et — quand c'est disponible —
         le téléchargement.
       </p>
-
-
-      <div class="filter-panel" id="filterPanel">
-
-        <div class="filter-group">
-          <div class="filter-label">Style de jeu</div>
-          <div class="filter-pills" id="genreFilters"></div>
-        </div>
-
-        <div class="filter-group">
-          <div class="filter-label">Type de mod</div>
-          <div class="filter-pills" id="typeFilters"></div>
-        </div>
-
-      </div>
 
     </header>
 
@@ -223,27 +196,58 @@
 
           <div class="section-label">Projets</div>
 
-          <div class="game-search">
-
-            <i class="fa-solid fa-magnifying-glass"></i>
-
-            <input
-              type="search"
-              id="gameSearch"
-              placeholder="Rechercher un jeu..."
-              autocomplete="off"
-              aria-label="Rechercher un jeu"
-            >
+          <div class="projects-controls">
 
             <button
+              class="hamburger"
+              id="hamburgerBtn"
               type="button"
-              id="clearSearch"
-              class="search-clear"
-              aria-label="Effacer la recherche"
+              aria-label="Ouvrir les filtres"
+              aria-expanded="false"
             >
-              <i class="fa-solid fa-xmark"></i>
+              <span></span>
+              <span></span>
+              <span></span>
             </button>
 
+            <div class="game-search">
+
+              <i class="fa-solid fa-magnifying-glass"></i>
+
+              <input
+                type="search"
+                id="gameSearch"
+                placeholder="Rechercher un jeu..."
+                autocomplete="off"
+                aria-label="Rechercher un jeu"
+              >
+
+              <button
+                type="button"
+                id="clearSearch"
+                class="search-clear"
+                aria-label="Effacer la recherche"
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="filter-panel" id="filterPanel">
+
+          <div class="filter-group">
+            <div class="filter-label">Style de jeu</div>
+            <div class="filter-pills" id="genreFilters"></div>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-label">Type de mod</div>
+            <div class="filter-pills" id="typeFilters"></div>
           </div>
 
         </div>
