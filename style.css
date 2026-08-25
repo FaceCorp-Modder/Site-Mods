@@ -863,4 +863,160 @@ footer{
     right:15px;
     bottom:15px;
   }
+
+/* ============================================================
+   DEMANDE DE CRÉATION DE MOD
+   ============================================================ */
+
+.mod-request{
+  margin-top:80px;
+  padding-top:50px;
+  border-top:1px solid var(--line);
+}
+
+.mod-request-content{
+  position:relative;
+  max-width:850px;
+  padding:34px;
+
+  border:1px solid var(--line);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(94,234,212,.045),
+      rgba(255,255,255,.015)
+    );
+
+  overflow:hidden;
+}
+
+.mod-request-content::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+
+  width:70px;
+  height:2px;
+
+  background:var(--cyan);
+  box-shadow:0 0 14px var(--cyan);
+}
+
+.mod-request h2{
+  margin:0 0 16px;
+
+  font-family:var(--mono);
+  font-size:clamp(22px, 4vw, 32px);
+  font-weight:600;
+
+  color:var(--text);
+}
+
+.mod-request > .mod-request-content > p{
+  max-width:700px;
+  margin:0;
+
+  color:var(--text-muted);
+  line-height:1.75;
+  font-size:14px;
+}
+
+.mod-request-types{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+
+  margin-top:24px;
+}
+
+.mod-request-types span{
+  padding:7px 11px;
+
+  border:1px solid var(--line);
+
+  color:var(--cyan);
+
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+
+  background:rgba(94,234,212,.035);
+}
+
+.mod-request-note{
+  margin-top:25px;
+  padding:15px 17px;
+
+  border-left:2px solid var(--cyan);
+  background:rgba(255,255,255,.025);
+
+  color:var(--text-muted);
+  font-size:13px;
+  line-height:1.65;
+}
+
+.mod-request-note strong{
+  color:var(--text);
+  font-weight:500;
+}
+
+.mod-request-button{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+
+  margin-top:26px;
+  padding:12px 17px;
+
+  border:1px solid var(--cyan);
+  background:rgba(94,234,212,.07);
+
+  color:var(--cyan);
+  text-decoration:none;
+
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.05em;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.mod-request-button:hover{
+  background:var(--cyan);
+  color:#07100f;
+
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 0 18px rgba(94,234,212,.15);
+}
+
+.mod-request-button i{
+  font-size:16px;
+}
+
+.mod-request-button span{
+  margin-left:4px;
+}
+
+@media(max-width:600px){
+
+  .mod-request{
+    margin-top:55px;
+  }
+
+  .mod-request-content{
+    padding:24px 20px;
+  }
+
+  .mod-request-button{
+    width:100%;
+    justify-content:center;
+  }
 }
