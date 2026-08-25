@@ -59,35 +59,6 @@
 
     <header>
 
-      <section class="about-intro">
-  <div class="section-label">À propos de l'atelier</div>
-
-  <div class="about-intro-content">
-    <p>
-      Je travaille principalement sur des jeux développés avec
-      <strong>Unreal Engine</strong>, en modifiant selon les projets
-      les textes, textures, fichiers audio, vidéos, interfaces
-      et autres ressources du jeu.
-    </p>
-
-    <p>
-      Pour les projets de doublage, j'utilise un système
-      d'intelligence artificielle que j'ai développé spécialement
-      pour ce travail. Il permet de cloner les voix originales
-      et de générer leur équivalent en français avec une prononciation
-      plus naturelle, en cherchant notamment à éliminer au maximum
-      l'accent anglais.
-    </p>
-
-    <p>
-      Certaines voix restent cependant plus complexes à reproduire.
-      Selon le timbre, l'intonation ou la qualité de la source,
-      plusieurs traitements et essais peuvent être nécessaires
-      avant d'obtenir un résultat satisfaisant.
-    </p>
-  </div>
-</section>
-      
       <div class="header-top">
 
         <div class="brand">
@@ -118,8 +89,6 @@
       </p>
 
 
-      <!-- Filtres avancés -->
-
       <div class="filter-panel" id="filterPanel">
 
         <div class="filter-group">
@@ -143,7 +112,110 @@
 
     <main>
 
-      <!-- Recherche -->
+      <!-- ====================================================
+           À PROPOS
+           ==================================================== -->
+
+      <section class="about-intro">
+
+        <div class="section-label">À propos de l'atelier</div>
+
+        <div class="about-intro-content">
+
+          <div class="about-intro-main">
+
+            <div class="about-intro-icon">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+            </div>
+
+            <div>
+
+              <h2>Création & modification de mods</h2>
+
+              <p>
+                Je travaille principalement sur des jeux développés avec
+                <strong>Unreal Engine</strong>, en intervenant directement sur
+                différentes ressources selon les besoins du projet : textes,
+                textures, interfaces, fichiers audio, vidéos et autres éléments
+                intégrés au jeu.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="about-tech">
+
+            <div class="about-tech-item">
+
+              <div class="about-tech-title">
+                <i class="fa-solid fa-cube"></i>
+                Unreal Engine
+              </div>
+
+              <p>
+                Une grande partie de mon travail concerne les jeux utilisant
+                Unreal Engine et la modification de leurs assets afin de créer
+                des traductions et adaptations françaises aussi complètes que possible.
+              </p>
+
+            </div>
+
+
+            <div class="about-tech-item">
+
+              <div class="about-tech-title">
+                <i class="fa-solid fa-wave-square"></i>
+                Doublage par IA
+              </div>
+
+              <p>
+                Pour les projets nécessitant un doublage, j'utilise mon propre
+                système d'intelligence artificielle afin de
+                <strong>cloner les voix originales</strong> et de générer
+                leur équivalent en français.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="about-ai-note">
+
+            <i class="fa-solid fa-microphone-lines"></i>
+
+            <div>
+
+              <strong>Un doublage adapté au français</strong>
+
+              <p>
+                L'objectif est de conserver au maximum le timbre et l'identité
+                de la voix originale tout en obtenant une prononciation française
+                naturelle, notamment en supprimant autant que possible l'accent
+                anglais souvent présent avec certaines solutions de clonage vocal.
+              </p>
+
+              <p>
+                Certaines voix restent cependant beaucoup plus complexes à reproduire.
+                Le timbre, les émotions, les intonations ou la qualité de l'enregistrement
+                original peuvent nécessiter plusieurs essais et ajustements avant
+                d'obtenir un résultat satisfaisant.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ====================================================
+           RECHERCHE
+           ==================================================== -->
 
       <div class="game-search">
 
@@ -169,39 +241,25 @@
       </div>
 
 
-      <!-- Statuts -->
+      <!-- ====================================================
+           STATUTS
+           ==================================================== -->
 
       <div class="status-tabs" id="statusTabs">
 
-        <button
-          class="status-tab active"
-          type="button"
-          data-status="all"
-        >
+        <button class="status-tab active" type="button" data-status="all">
           Tous
         </button>
 
-        <button
-          class="status-tab"
-          type="button"
-          data-status="termine"
-        >
+        <button class="status-tab" type="button" data-status="termine">
           Terminé
         </button>
 
-        <button
-          class="status-tab"
-          type="button"
-          data-status="en-cours"
-        >
+        <button class="status-tab" type="button" data-status="en-cours">
           En cours
         </button>
 
-        <button
-          class="status-tab"
-          type="button"
-          data-status="avenir"
-        >
+        <button class="status-tab" type="button" data-status="avenir">
           À venir
         </button>
 
@@ -311,7 +369,7 @@
   <script>
 
     /* ============================================================
-       FOND ANIMÉ — effet réseau / circuit
+       FOND ANIMÉ
        ============================================================ */
 
     (function(){
@@ -332,7 +390,6 @@
       let nodes;
 
       const LINK_DIST = 140;
-
       const CYAN = '94, 234, 212';
       const AMBER = '240, 168, 104';
 
@@ -352,14 +409,10 @@
           () => ({
             x: Math.random() * width,
             y: Math.random() * height,
-
             vx: (Math.random() - 0.5) * 0.18,
             vy: (Math.random() - 0.5) * 0.18,
-
             r: Math.random() * 1.6 + 0.6,
-
             pulse: Math.random() * Math.PI * 2,
-
             amber: Math.random() < 0.12
           })
         );
@@ -369,7 +422,6 @@
       function step(){
 
         ctx.clearRect(0, 0, width, height);
-
 
         for (const n of nodes){
 
@@ -410,10 +462,8 @@
               ctx.lineWidth = 1;
 
               ctx.beginPath();
-
               ctx.moveTo(a.x, a.y);
               ctx.lineTo(b.x, b.y);
-
               ctx.stroke();
             }
           }
@@ -477,21 +527,17 @@
     /* ============================================================
        DONNÉES DES MODS
 
-       Pour ajouter un nouveau mod :
-       copie un objet dans le tableau "mods".
-
        status :
        'termine' | 'en-cours' | 'avenir'
 
        genre :
-       une chaîne de caractères
-       ex : 'Horreur'
+       ex. 'Horreur', 'Simulation'
 
        modType :
        un type :
        'Doublage'
 
-       OU plusieurs types :
+       ou plusieurs :
        ['Traduction', 'Doublage', 'Textures', 'Audio']
 
        ============================================================ */
@@ -548,35 +594,23 @@
               <h3>Une adaptation complète</h3>
 
               <p>
-
                 Le projet ne se limite pas à une simple traduction des textes.
                 De nombreux éléments du jeu ont été retravaillés afin de proposer
                 une expérience cohérente et immersive en français.
-
               </p>
 
 
               <ul class="description-list">
 
-                <li>
-                  Textes et dialogues entièrement traduits en français
-                </li>
+                <li>Textes et dialogues entièrement traduits en français</li>
 
-                <li>
-                  Voix et dialogues adaptés en français
-                </li>
+                <li>Voix et dialogues adaptés en français</li>
 
-                <li>
-                  Vidéos du jeu adaptées pour la version française
-                </li>
+                <li>Vidéos du jeu adaptées pour la version française</li>
 
-                <li>
-                  Textures et éléments graphiques traduits
-                </li>
+                <li>Textures et éléments graphiques traduits</li>
 
-                <li>
-                  Interface et différents éléments visuels adaptés
-                </li>
+                <li>Interface et différents éléments visuels adaptés</li>
 
               </ul>
 
@@ -588,12 +622,10 @@
               <h3>Un projet réalisé sur mesure</h3>
 
               <p>
-
                 Chaque modification a été réalisée spécifiquement pour cette
                 adaptation française, avec pour objectif de rendre le jeu
                 plus accessible aux joueurs francophones sans dénaturer
                 l'expérience originale.
-
               </p>
 
             </div>
@@ -604,12 +636,10 @@
               <h3>Une version personnalisée pour GussDx</h3>
 
               <p>
-
                 Cette version du mod a également été spécialement personnalisée
                 pour <strong>GussDx</strong>, afin de pouvoir être utilisée
                 dans ses sessions de jeu et ses streams consacrés
                 à l'enquête paranormale.
-
               </p>
 
 
@@ -620,18 +650,14 @@
                 class="creator-link"
               >
 
-                <span class="creator-link-icon">
-                  ◆
-                </span>
+                <span class="creator-link-icon">◆</span>
 
                 <span>
                   <small>STREAMER</small>
                   <strong>GussDx</strong>
                 </span>
 
-                <span class="creator-link-arrow">
-                  ↗
-                </span>
+                <span class="creator-link-arrow">↗</span>
 
               </a>
 
@@ -643,12 +669,10 @@
               <h3>Le jeu original</h3>
 
               <p>
-
                 Vous souhaitez découvrir le jeu avant d'installer le mod ?
                 Retrouvez
                 <strong>Conrad Stevenson's Paranormal P.I.</strong>
                 sur Steam.
-
               </p>
 
 
@@ -659,18 +683,14 @@
                 class="game-link"
               >
 
-                <span class="game-link-icon">
-                  ↗
-                </span>
+                <span class="game-link-icon">↗</span>
 
                 <span>
                   <small>DISPONIBLE SUR</small>
                   <strong>Steam</strong>
                 </span>
 
-                <span class="game-link-arrow">
-                  ↗
-                </span>
+                <span class="game-link-arrow">↗</span>
 
               </a>
 
@@ -697,11 +717,7 @@
 
         video: null,
 
-        installSteps: [
-          "Télécharge le fichier .pak depuis le lien ci-dessous.",
-          "Place-le dans le dossier Paks du jeu.",
-          "Lance le jeu normalement."
-        ],
+        installSteps: null,
 
         downloadUrl: null,
 
@@ -752,15 +768,12 @@
               <h3>Le projet</h3>
 
               <p>
-
                 Les voix originales du jeu seront progressivement
                 remplacées par un
                 <strong>doublage 100 % français</strong>.
-
                 L'objectif est de proposer une expérience plus naturelle
                 et accessible, tout en conservant l'ambiance
                 et le ton du jeu original.
-
               </p>
 
             </div>
@@ -772,18 +785,14 @@
 
               <ul class="description-list">
 
-                <li>
-                  Doublage des voix originales en français
-                </li>
+                <li>Doublage des voix originales en français</li>
 
                 <li>
                   Dialogues adaptés pour conserver leur sens
                   et leur contexte
                 </li>
 
-                <li>
-                  Intégration directe des nouvelles voix dans le jeu
-                </li>
+                <li>Intégration directe des nouvelles voix dans le jeu</li>
 
                 <li>
                   Une expérience plus immersive
@@ -800,12 +809,10 @@
               <h3>Le jeu original</h3>
 
               <p>
-
                 Vous souhaitez découvrir le jeu avant d'installer le mod ?
                 Retrouvez
                 <strong>Police Simulator: Patrol Officers</strong>
                 sur Steam.
-
               </p>
 
 
@@ -816,18 +823,14 @@
                 class="game-link"
               >
 
-                <span class="game-link-icon">
-                  ↗
-                </span>
+                <span class="game-link-icon">↗</span>
 
                 <span>
                   <small>DISPONIBLE SUR</small>
                   <strong>Steam</strong>
                 </span>
 
-                <span class="game-link-arrow">
-                  ↗
-                </span>
+                <span class="game-link-arrow">↗</span>
 
               </a>
 
@@ -874,25 +877,12 @@
        ============================================================ */
 
     const state = {
-
-      status:
-        'all',
-
-      genres:
-        new Set(),
-
-      types:
-        new Set(),
-
-      search:
-        ''
-
+      status: 'all',
+      genres: new Set(),
+      types: new Set(),
+      search: ''
     };
 
-
-    /* ============================================================
-       RENDU DE LA GRILLE
-       ============================================================ */
 
     const grid =
       document.getElementById('grid');
@@ -923,8 +913,6 @@
 
     function matchesFilters(mod){
 
-      /* Statut */
-
       if (
         state.status !== 'all' &&
         mod.status !== state.status
@@ -933,8 +921,6 @@
       }
 
 
-      /* Genre */
-
       if (
         state.genres.size &&
         !state.genres.has(mod.genre)
@@ -942,8 +928,6 @@
         return false;
       }
 
-
-      /* Types */
 
       if (state.types.size){
 
@@ -960,8 +944,6 @@
         }
       }
 
-
-      /* Recherche */
 
       if (state.search){
 
@@ -1136,7 +1118,7 @@
 
 
     /* ============================================================
-       ONGLETS DE STATUT
+       STATUTS
        ============================================================ */
 
     document
@@ -1156,10 +1138,8 @@
 
             btn.classList.add('active');
 
-
             state.status =
               btn.dataset.status;
-
 
             renderGrid();
           }
@@ -1169,7 +1149,7 @@
 
 
     /* ============================================================
-       FILTRES GENRE / TYPE
+       FILTRES
        ============================================================ */
 
     function buildPills(
@@ -1244,32 +1224,16 @@
 
 
     buildPills(
-
-      document.getElementById(
-        'genreFilters'
-      ),
-
-      mods.map(
-        mod => mod.genre
-      ),
-
+      document.getElementById('genreFilters'),
+      mods.map(mod => mod.genre),
       state.genres
-
     );
 
 
     buildPills(
-
-      document.getElementById(
-        'typeFilters'
-      ),
-
-      mods.flatMap(
-        mod => getModTypes(mod)
-      ),
-
+      document.getElementById('typeFilters'),
+      mods.flatMap(mod => getModTypes(mod)),
       state.types
-
     );
 
 
@@ -1289,12 +1253,10 @@
       state.search =
         gameSearch.value;
 
-
       clearSearch.classList.toggle(
         'visible',
         gameSearch.value.length > 0
       );
-
 
       renderGrid();
     }
@@ -1328,7 +1290,7 @@
 
 
     /* ============================================================
-       MENU HAMBURGER
+       MENU FILTRES
        ============================================================ */
 
     const hamburgerBtn =
@@ -1347,12 +1309,10 @@
             'open'
           );
 
-
         hamburgerBtn.classList.toggle(
           'open',
           open
         );
-
 
         hamburgerBtn.setAttribute(
           'aria-expanded',
@@ -1671,7 +1631,6 @@
         'active'
       );
 
-
       document.body.classList.add(
         'modal-open'
       );
@@ -1786,10 +1745,7 @@
 
       } catch (error) {
 
-        /*
-          Les navigateurs peuvent bloquer
-          l'autoplay avec du son.
-        */
+        /* Autoplay potentiellement bloqué par le navigateur */
 
       }
 
@@ -1818,17 +1774,10 @@
 
         }
 
-
         updateAudioButton();
       }
     );
 
-
-    /*
-      Si l'autoplay est bloqué,
-      le premier clic sur la page
-      essaie de lancer la musique.
-    */
 
     document.addEventListener(
       'click',
@@ -1851,7 +1800,6 @@
        ============================================================ */
 
     renderGrid();
-
     startAudio();
 
   </script>
