@@ -217,62 +217,70 @@
            RECHERCHE
            ==================================================== -->
 
-      <div class="game-search">
+      <section class="projects-section">
 
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="projects-header">
 
-        <input
-          type="search"
-          id="gameSearch"
-          placeholder="Rechercher un jeu..."
-          autocomplete="off"
-          aria-label="Rechercher un jeu"
-        >
+          <div class="section-label">Projets</div>
 
-        <button
-          type="button"
-          id="clearSearch"
-          class="search-clear"
-          aria-label="Effacer la recherche"
-        >
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+          <div class="game-search">
 
-      </div>
+            <i class="fa-solid fa-magnifying-glass"></i>
 
+            <input
+              type="search"
+              id="gameSearch"
+              placeholder="Rechercher un jeu..."
+              autocomplete="off"
+              aria-label="Rechercher un jeu"
+            >
 
-      <!-- ====================================================
-           STATUTS
-           ==================================================== -->
+            <button
+              type="button"
+              id="clearSearch"
+              class="search-clear"
+              aria-label="Effacer la recherche"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
 
-      <div class="status-tabs" id="statusTabs">
+          </div>
 
-        <button class="status-tab active" type="button" data-status="all">
-          Tous
-        </button>
-
-        <button class="status-tab" type="button" data-status="termine">
-          Terminé
-        </button>
-
-        <button class="status-tab" type="button" data-status="en-cours">
-          En cours
-        </button>
-
-        <button class="status-tab" type="button" data-status="avenir">
-          À venir
-        </button>
-
-      </div>
+        </div>
 
 
-      <div class="section-label">Projets</div>
+        <!-- ====================================================
+             STATUTS
+             ==================================================== -->
 
-      <div class="grid" id="grid"></div>
+        <div class="status-tabs" id="statusTabs">
 
-      <div class="empty-state" id="emptyState">
-        Aucun mod ne correspond à votre recherche ou à ces filtres.
-      </div>
+          <button class="status-tab active" type="button" data-status="all">
+            Tous
+          </button>
+
+          <button class="status-tab" type="button" data-status="termine">
+            Terminé
+          </button>
+
+          <button class="status-tab" type="button" data-status="en-cours">
+            En cours
+          </button>
+
+          <button class="status-tab" type="button" data-status="avenir">
+            À venir
+          </button>
+
+        </div>
+
+
+        <div class="grid" id="grid"></div>
+
+        <div class="empty-state" id="emptyState">
+          Aucun mod ne correspond à votre recherche ou à ces filtres.
+        </div>
+
+      </section>
 
 
       <!-- ====================================================

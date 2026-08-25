@@ -374,6 +374,222 @@ main{
 
 
 /* ============================================================
+   ABOUT
+   ============================================================ */
+
+.about-intro{
+  margin-bottom:54px;
+  padding-bottom:48px;
+
+  border-bottom:1px solid var(--line);
+}
+
+.about-intro-content{
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr);
+  gap:24px;
+  align-items:start;
+}
+
+.about-intro-main{
+  display:grid;
+  grid-template-columns:54px minmax(0,1fr);
+  gap:18px;
+
+  padding:26px 0 28px;
+
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.about-intro-icon{
+  width:54px;
+  height:54px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid rgba(94,234,212,.24);
+  background:rgba(94,234,212,.045);
+
+  color:var(--cyan);
+  font-size:20px;
+}
+
+.about-intro-main h2{
+  margin-bottom:14px;
+
+  color:var(--text);
+
+  font-family:var(--mono);
+  font-size:28px;
+  font-weight:600;
+  line-height:1.2;
+}
+
+.about-intro-main p{
+  max-width:720px;
+
+  color:var(--text-soft);
+
+  font-size:15px;
+  line-height:1.8;
+}
+
+.about-intro-main strong{
+  color:var(--cyan);
+  font-weight:600;
+}
+
+.about-tech{
+  display:grid;
+  gap:14px;
+}
+
+.about-tech-item{
+  padding:18px 0 18px 18px;
+
+  border-left:1px solid var(--line-bright);
+  background:linear-gradient(
+    90deg,
+    rgba(94,234,212,.035),
+    transparent 72%
+  );
+}
+
+.about-tech-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  margin-bottom:10px;
+
+  color:var(--text);
+
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:600;
+  text-transform:uppercase;
+}
+
+.about-tech-title i{
+  width:16px;
+  flex:0 0 16px;
+
+  color:var(--cyan);
+  font-size:14px;
+  text-align:center;
+}
+
+.about-tech-item p{
+  color:var(--text-muted);
+
+  font-size:14px;
+  line-height:1.7;
+}
+
+.about-ai-note{
+  position:relative;
+
+  grid-column:1 / -1;
+
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr);
+  gap:16px;
+
+  padding:20px 22px;
+
+  border:1px solid var(--line);
+  background:rgba(16,22,29,.58);
+
+  overflow:hidden;
+}
+
+.about-ai-note::before{
+  content:'';
+
+  position:absolute;
+  top:0;
+  left:0;
+
+  width:72px;
+  height:2px;
+
+  background:var(--cyan);
+}
+
+.about-ai-note > i{
+  width:42px;
+  height:42px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid rgba(94,234,212,.2);
+  background:rgba(94,234,212,.035);
+
+  color:var(--cyan);
+  font-size:17px;
+}
+
+.about-ai-note strong{
+  display:block;
+  margin-bottom:8px;
+
+  color:var(--text);
+
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:600;
+  text-transform:uppercase;
+}
+
+.about-ai-note p{
+  color:var(--text-muted);
+
+  font-size:14px;
+  line-height:1.75;
+}
+
+.about-ai-note p + p{
+  margin-top:10px;
+}
+
+
+/* ============================================================
+   PROJECTS HEADER
+   ============================================================ */
+
+.projects-section{
+  margin-top:0;
+}
+
+.projects-header{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(280px,420px);
+  gap:24px;
+  align-items:center;
+
+  margin-bottom:20px;
+}
+
+.projects-header .section-label{
+  margin-bottom:0;
+}
+
+.projects-header .game-search{
+  justify-self:end;
+
+  width:100%;
+  max-width:420px;
+
+  margin-bottom:0;
+}
+
+
+/* ============================================================
    SEARCH
    ============================================================ */
 
@@ -1687,6 +1903,25 @@ footer{
 
 @media (max-width:900px){
 
+  .about-intro-content{
+    grid-template-columns:1fr;
+  }
+
+  .about-ai-note{
+    grid-column:auto;
+  }
+
+  .projects-header{
+    grid-template-columns:1fr;
+    gap:16px;
+    align-items:start;
+  }
+
+  .projects-header .game-search{
+    justify-self:stretch;
+    max-width:none;
+  }
+
   .grid{
     grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
   }
@@ -1745,6 +1980,63 @@ footer{
 
   .filter-panel.open{
     max-height:520px;
+  }
+
+  .about-intro{
+    margin-bottom:38px;
+    padding-bottom:34px;
+  }
+
+  .about-intro-content{
+    gap:18px;
+  }
+
+  .about-intro-main{
+    grid-template-columns:1fr;
+    gap:14px;
+
+    padding:22px 0;
+  }
+
+  .about-intro-icon{
+    width:46px;
+    height:46px;
+
+    font-size:17px;
+  }
+
+  .about-intro-main h2{
+    font-size:22px;
+  }
+
+  .about-intro-main p,
+  .about-tech-item p,
+  .about-ai-note p{
+    font-size:13px;
+  }
+
+  .about-tech-item{
+    padding:16px 0 16px 14px;
+  }
+
+  .about-ai-note{
+    grid-template-columns:1fr;
+
+    padding:18px;
+  }
+
+  .about-ai-note > i{
+    width:38px;
+    height:38px;
+  }
+
+  .projects-header{
+    gap:14px;
+    margin-bottom:18px;
+  }
+
+  .projects-header .game-search{
+    margin-bottom:0;
   }
 
   .game-search{
@@ -1831,6 +2123,17 @@ footer{
   .audio-toggle{
     right:15px;
     bottom:15px;
+
+    width:40px;
+    height:40px;
+
+    justify-content:center;
+
+    padding:0;
+  }
+
+  .audio-toggle span{
+    display:none;
   }
 
   footer{
